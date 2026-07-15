@@ -1259,88 +1259,34 @@ function playVideo(videoId, posterId) {
     </div>
 </section>
 
-<!-- =============================================
-     SECTION: ENDING (篮球只是那根火柴)
-     Animated: black → spark → glow orb → text reveal
-     ============================================= -->
+<!-- ===================== SECTION: MATCHSTICK ENDING ===================== -->
 <section class="ending-section" id="section-ending">
-
-    <!-- Background glow (fades in when matchstick ignites) -->
-    <div id="endingBg" style="position:absolute; inset:0; background:radial-gradient(circle at 50% 60%, rgba(244,122,31,0.08) 0%, rgba(244,80,20,0.03) 40%, transparent 70%); opacity:0; transition:opacity 2s ease;"></div>
-
     <div class="matchstick-container">
+        <div class="ending-bg" id="endingBg"></div>
 
-        <!-- Matchstick (visible initially, fades out after spark) -->
-        <div id="matchstick" style="position:absolute; bottom:18%; left:50%; transform:translateX(-50%); width:6px; height:180px; background:linear-gradient(to top, #8B7355, #D2B48C); border-radius:3px 3px 0 0; z-index:2; transition:opacity 1s ease;">
-            <!-- Match head -->
-            <div style="position:absolute; top:-22px; left:50%; transform:translateX(-50%); width:22px; height:28px; background:radial-gradient(ellipse at 50% 70%, #F47A1F, #c45e10 60%, #8B4513); border-radius:50% 50% 40% 40%;"></div>
-            <!-- Flame outer -->
-            <div style="position:absolute; top:-75px; left:50%; transform:translateX(-50%); width:28px; height:55px; background:radial-gradient(ellipse at 50% 80%, rgba(255,200,50,0.9), rgba(244,122,31,0.7) 40%, rgba(244,80,20,0.3) 70%, transparent); border-radius:50% 50% 50% 50% / 60% 60% 40% 40%; filter:blur(2px); animation:flameFlicker 1.5s ease-in-out infinite alternate;"></div>
-            <!-- Flame inner -->
-            <div style="position:absolute; top:-65px; left:50%; transform:translateX(-50%); width:14px; height:40px; background:radial-gradient(ellipse at 50% 80%, rgba(255,255,200,0.9), rgba(255,200,50,0.6) 50%, transparent); border-radius:50% 50% 50% 50% / 60% 60% 40% 40%; filter:blur(1px); animation:flameFlicker 1.8s ease-in-out infinite alternate-reverse;"></div>
-            <!-- Glow halo -->
-            <div style="position:absolute; top:-90px; left:50%; transform:translateX(-50%); width:120px; height:120px; background:radial-gradient(circle, rgba(244,122,31,0.15), transparent 70%); pointer-events:none; animation:glowPulse 2s ease-in-out infinite;"></div>
+        <!-- Central glow orb -->
+        <div class="glow-orb" id="glowOrb"></div>
+
+        <!-- Matchstick (fades out after spark) -->
+        <div class="matchstick" id="matchstick"></div>
+
+        <!-- Spark container -->
+        <div class="spark-container" id="sparkContainer"></div>
+
+        <!-- Orbit text surrounding the glow -->
+        <div class="orbit-text" id="orbitText">
+            <div class="orbit-item orbit-title" id="orbitTitle">篮球只是那根火柴。</div>
+            <div class="orbit-item orbit-left-1" id="orbitLeft1">于是，我们终于可以回答文章开头的问题——<br><br>真正点燃岚皋的，从来不是篮球。<br><br>篮球，只是那根火柴。<br><br>真正燃烧起来的，是一座山区县的发展信心，<br>是体育与文化、旅游、产业深度融合释放出的活力，<br>是群众参与体育的热情，<br>也是体育强国战略背景下，<br>越来越多山区县探索高质量发展的另一种可能。<br><br>当终场哨声响起，比赛终会结束。<br>但属于小县城的发展故事，仍在继续。</div>
+            <div class="orbit-item orbit-right-1" id="orbitRight1">一场赛事可以点亮一座球场，<br>一个IP可以激活一座县城。<br><br>岚皋"村BA"真正留下的，<br>是小地方也能靠本土资源<br>被看见、被记住、被选择的可能。</div>
+            <div class="orbit-item orbit-final" id="orbitFinal">"一场篮球赛，改变了一座山城。"</div>
         </div>
 
-        <!-- Spark container (sparks fly out on strike) -->
-        <div id="sparkContainer" style="position:absolute; bottom:calc(18% + 170px); left:50%; transform:translateX(-50%); width:0; height:0; z-index:3;"></div>
-
-        <!-- Glow orb (replaces matchstick after ignition) -->
-        <div id="glowOrb" style="position:absolute; bottom:35%; left:50%; transform:translateX(-50%) scale(0); width:200px; height:200px; border-radius:50%; background:radial-gradient(circle, rgba(244,122,31,0.25) 0%, rgba(244,80,20,0.1) 40%, transparent 70%); transition:transform 2s cubic-bezier(0.16,1,0.3,1), opacity 2s ease; opacity:0; z-index:1;">
-            <div style="position:absolute; inset:30%; border-radius:50%; background:radial-gradient(circle, rgba(255,200,80,0.2), transparent); animation:glowPulse 3s ease-in-out infinite;"></div>
+        <!-- Source footer -->
+        <div class="ending-source" id="endingSource">
+            <p>数据来源：国家体育总局官网、经济参考报、中国发展网、安康日报、中国乡村振兴杂志、安康融媒、岚皋县人民政府官网</p>
+            <p>本作品为全国大学生数据新闻比赛参赛作品，所有数据均来自公开报道。</p>
         </div>
-
-        <!-- Text elements (hidden initially, revealed by JS sequence) -->
-        <div id="orbitTitle" style="position:relative; z-index:10; text-align:center; max-width:700px; padding:0 2rem; opacity:0; transform:translateY(20px); transition:opacity 1.5s ease, transform 1.5s ease;">
-            <p style="font-family:var(--font-display); font-size:clamp(0.95rem,1.5vw,1.15rem); color:rgba(255,255,255,0.55); line-height:2.2; margin-bottom:1.8rem;">夜深以后，球场的灯会熄灭，欢呼声也会慢慢散去。</p>
-            <p style="font-family:var(--font-display); font-size:clamp(0.95rem,1.5vw,1.15rem); color:rgba(255,255,255,0.65); line-height:2.2; margin-bottom:2.5rem;">但那些被镜头记录的进球、被游客带走的味道、被商户接住的订单，还在球场之外继续生长。</p>
-        </div>
-
-        <div id="orbitFinal" style="position:relative; z-index:10; text-align:center; max-width:700px; padding:0 2rem; opacity:0; transform:translateY(20px); transition:opacity 2s ease, transform 2s ease;">
-            <h2 style="font-family:var(--font-display); font-weight:900; font-size:clamp(2rem,5vw,3.5rem); color:#F47A1F; line-height:1.4; margin-bottom:2.5rem; text-shadow:0 0 60px rgba(244,122,31,0.35), 0 0 120px rgba(244,122,31,0.1);">篮球只是那根火柴。</h2>
-            <p style="font-family:var(--font-display); font-size:clamp(0.95rem,1.5vw,1.15rem); color:rgba(255,255,255,0.65); line-height:2.2;">真正被点亮的，是一座秦巴小城被看见、被记住，也被重新选择的可能。</p>
-        </div>
-
     </div>
-
-    <style>
-        @keyframes flameFlicker {
-            0% { transform: translateX(-50%) scaleY(1) scaleX(1); opacity: 0.9; }
-            25% { transform: translateX(-50%) scaleY(1.06) scaleX(0.96); opacity: 1; }
-            50% { transform: translateX(-50%) scaleY(0.94) scaleX(1.04); opacity: 0.85; }
-            75% { transform: translateX(-50%) scaleY(1.03) scaleX(0.98); opacity: 0.95; }
-            100% { transform: translateX(-50%) scaleY(0.97) scaleX(1.02); opacity: 0.9; }
-        }
-        @keyframes glowPulse {
-            0%, 100% { opacity: 0.6; transform: translateX(-50%) scale(1); }
-            50% { opacity: 1; transform: translateX(-50%) scale(1.15); }
-        }
-        /* Spark particles */
-        .spark {
-            position: absolute;
-            width: 3px; height: 3px;
-            border-radius: 50%;
-            background: #F47A1F;
-            box-shadow: 0 0 4px rgba(244,122,31,0.8);
-            animation: sparkFly 0.8s ease-out forwards;
-        }
-        @keyframes sparkFly {
-            0% { transform: translate(0, 0) scale(1); opacity: 1; }
-            100% { transform: translate(var(--sx), var(--sy)) scale(0); opacity: 0; }
-        }
-        /* Glow orb active state */
-        #glowOrb.active {
-            transform: translateX(-50%) scale(1);
-            opacity: 1;
-        }
-        /* Background visible */
-        #endingBg.visible { opacity: 1; }
-        /* Text visible states */
-        #orbitTitle.visible, #orbitFinal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
 </section>
 
 <!-- =============================================
@@ -1730,47 +1676,65 @@ function playVideo(videoId, posterId) {
         const glowOrb = document.getElementById('glowOrb');
         const endingBg = document.getElementById('endingBg');
         const orbitTitle = document.getElementById('orbitTitle');
+        const orbitLeft1 = document.getElementById('orbitLeft1');
+        const orbitRight1 = document.getElementById('orbitRight1');
         const orbitFinal = document.getElementById('orbitFinal');
+        const endingSource = document.getElementById('endingSource');
 
         if (!endingSection || !matchstick) return;
 
         function createSparks(container) {
-            for (let i = 0; i < 14; i++) {
+            for (let i = 0; i < 12; i++) {
                 const spark = document.createElement('div');
                 spark.className = 'spark';
-                const angle = (Math.PI * 2 * i) / 14 + (Math.random() - 0.5) * 0.5;
-                const dist = 30 + Math.random() * 50;
+                const angle = (Math.PI * 2 * i) / 12 + (Math.random() - 0.5) * 0.5;
+                const dist = 30 + Math.random() * 40;
                 spark.style.setProperty('--sx', Math.cos(angle) * dist + 'px');
                 spark.style.setProperty('--sy', Math.sin(angle) * dist - 20 + 'px');
-                spark.style.animationDelay = (Math.random() * 0.3) + 's';
+                spark.style.animationDelay = (Math.random() * 0.2) + 's';
                 container.appendChild(spark);
-                setTimeout(() => spark.remove(), 1200);
+                setTimeout(() => spark.remove(), 900);
             }
         }
 
         function runMatchstickSequence() {
-            // Phase 1: Matchstick with flame is visible (0s)
-            // Phase 2: Strike sparks at 1.2s
+            // Phase 1: Matchstick visible (already shown)
+            // Phase 2: Strike sparks at 1s
             setTimeout(() => {
                 createSparks(sparkContainer);
-            }, 1200);
+            }, 1000);
 
-            // Phase 3: Hide matchstick, show glow orb + light background at 2.5s
+            // Phase 3: Hide matchstick, show glow orb at 2s
             setTimeout(() => {
                 matchstick.style.opacity = '0';
                 glowOrb.classList.add('active');
                 endingBg.classList.add('visible');
-            }, 2500);
+            }, 2000);
 
-            // Phase 4: Show first paragraph at 4.5s
+            // Phase 4: Show title text at 3.5s
             setTimeout(() => {
                 if (orbitTitle) orbitTitle.classList.add('visible');
-            }, 4500);
+            }, 3500);
 
-            // Phase 5: Show climax title + final line at 6.5s
+            // Phase 5: Show left body text at 5s
+            setTimeout(() => {
+                if (orbitLeft1) orbitLeft1.classList.add('visible');
+            }, 5000);
+
+            // Phase 6: Show right text at 6.5s
+            setTimeout(() => {
+                if (orbitRight1) orbitRight1.classList.add('visible');
+            }, 6500);
+
+            // Phase 7: Show final quote at 8s
             setTimeout(() => {
                 if (orbitFinal) orbitFinal.classList.add('visible');
-            }, 6500);
+            }, 8000);
+
+            // Phase 8: Show source at 10s
+            setTimeout(() => {
+                if (endingSource) endingSource.classList.add('visible');
+            }, 10000);
         }
 
         const endingObserver = new IntersectionObserver((entries) => {
@@ -3124,8 +3088,137 @@ function playVideo(videoId, posterId) {
         .ending-section .matchstick-container {
             position: relative;
             width: 100%; height: 100vh;
-            display: flex; flex-direction: column;
-            align-items: center; justify-content: center;
+        }
+
+        .ending-bg {
+            position: absolute; inset: 0;
+            background: url('https://glistening-alfajores-0992f9.netlify.app/assets/night-panorama.jpg') center/cover no-repeat;
+            opacity: 0; transition: opacity 3s ease;
+            z-index: 0;
+        }
+        .ending-bg.visible { opacity: 0.25; }
+
+        /* Matchstick */
+        .matchstick {
+            position: absolute; z-index: 10;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 6px; height: 140px;
+            background: linear-gradient(to bottom, #c4a35a, #e8d5a0);
+            border-radius: 2px;
+            transition: opacity 0.8s ease;
+        }
+        .matchstick::before {
+            content: ''; position: absolute; top: -16px; left: 50%; transform: translateX(-50%);
+            width: 14px; height: 18px;
+            background: radial-gradient(ellipse, #e63946, #b71c1c);
+            border-radius: 4px 4px 2px 2px;
+        }
+
+        /* Central glowing orb */
+        .glow-orb {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 0; height: 0; border-radius: 50%;
+            background: radial-gradient(circle,
+                rgba(255,209,102,0.95) 0%,
+                rgba(244,122,31,0.6) 25%,
+                rgba(230,57,70,0.3) 45%,
+                rgba(255,150,50,0.1) 65%,
+                transparent 100%);
+            box-shadow: 0 0 80px rgba(244,122,31,0.5), 0 0 160px rgba(255,209,102,0.3);
+            z-index: 5; opacity: 0;
+            transition: width 2s ease, height 2s ease, opacity 1s ease;
+            pointer-events: none;
+        }
+        .glow-orb.active {
+            width: 200px; height: 200px; opacity: 1;
+            animation: orbPulse 3s ease-in-out infinite;
+        }
+        @keyframes orbPulse {
+            0%, 100% { box-shadow: 0 0 80px rgba(244,122,31,0.5), 0 0 160px rgba(255,209,102,0.3); transform: translate(-50%, -50%) scale(1); }
+            50% { box-shadow: 0 0 100px rgba(244,122,31,0.6), 0 0 200px rgba(255,209,102,0.35); transform: translate(-50%, -50%) scale(1.05); }
+        }
+
+        /* Text rings surrounding the glow orb */
+        .orbit-text {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90vw; height: 90vh;
+            z-index: 8; pointer-events: none;
+        }
+        .orbit-text .orbit-item {
+            position: absolute;
+            opacity: 0;
+            transition: opacity 1.5s ease, transform 1.5s ease;
+            white-space: nowrap;
+        }
+        .orbit-text .orbit-item.visible { opacity: 1; }
+        .orbit-text .orbit-title {
+            top: 8%;
+            left: 50%; transform: translateX(-50%);
+            font-family: var(--font-display);
+            font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+            font-weight: 700; color: #fff;
+            text-align: center;
+            text-shadow: 0 2px 30px rgba(244,122,31,0.6), 0 0 60px rgba(255,209,102,0.3);
+        }
+        .orbit-text .orbit-title.visible { transform: translateX(-50%) translateY(0); }
+        .orbit-text .orbit-left-1 {
+            top: 28%; left: 5%;
+            font-size: clamp(0.75rem, 1.2vw, 0.95rem);
+            color: rgba(255,255,255,0.7);
+            max-width: 280px; line-height: 1.8;
+            text-shadow: 0 1px 10px rgba(244,122,31,0.4);
+        }
+        .orbit-text .orbit-left-1.visible { transform: translateX(0); }
+        .orbit-text .orbit-right-1 {
+            top: 55%; right: 5%;
+            font-size: clamp(0.75rem, 1.2vw, 0.95rem);
+            color: rgba(255,255,255,0.6);
+            max-width: 280px; line-height: 1.8;
+            text-align: right;
+            text-shadow: 0 1px 10px rgba(244,122,31,0.4);
+        }
+        .orbit-text .orbit-right-1.visible { transform: translateX(0); }
+        .orbit-text .orbit-final {
+            bottom: 12%; left: 50%; transform: translateX(-50%);
+            font-family: var(--font-display);
+            font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+            font-weight: 600; color: var(--color-secondary);
+            text-align: center;
+            text-shadow: 0 2px 15px rgba(244,122,31,0.4);
+        }
+        .orbit-text .orbit-final.visible { transform: translateX(-50%) translateY(0); }
+
+        /* Spark */
+        .spark-container {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            z-index: 12; pointer-events: none;
+        }
+        .spark {
+            position: absolute; width: 4px; height: 4px;
+            background: #FFD166; border-radius: 50%;
+            animation: sparkFly 0.6s ease-out forwards;
+        }
+        @keyframes sparkFly {
+            0% { opacity: 1; transform: translate(0,0) scale(1); }
+            100% { opacity: 0; transform: translate(var(--sx), var(--sy)) scale(0); }
+        }
+
+        .ending-source {
+            position: absolute; bottom: 0; left: 0; width: 100%;
+            padding: 2rem 1.5rem;
+            background: rgba(0,0,0,0.7);
+            z-index: 6;
+            text-align: center;
+            opacity: 0; transition: opacity 1s ease;
+        }
+        .ending-source.visible { opacity: 1; }
+        .ending-source p {
+            font-size: 0.72rem; color: rgba(255,255,255,0.4);
+            line-height: 1.8;
         }
 
         /* ============ FOOTER STYLES ============ */
