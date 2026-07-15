@@ -1745,9 +1745,20 @@ function playVideo(videoId, posterId) {
                     endingObserver.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.3 });
+        }, { threshold: 0.1 });
 
         endingObserver.observe(endingSection);
+
+        // Fallback: trigger on scroll if observer doesn't fire
+        window.addEventListener('scroll', function checkEnding() {
+            if (endingSection.dataset.animated) return;
+            const rect = endingSection.getBoundingClientRect();
+            if (rect.top < window.innerHeight * 0.5) {
+                endingSection.dataset.animated = 'true';
+                runMatchstickSequence();
+                window.removeEventListener('scroll', checkEnding);
+            }
+        });
     })();
 
     // Re-observe new .reveal elements added for sections 9-14
@@ -2156,7 +2167,7 @@ function playVideo(videoId, posterId) {
             width: 100%;
             height: 100%;
             z-index: 2;
-            transform: translateY(-5%);
+            transform: translateY(10%);
             pointer-events: none;
         }
 
@@ -3089,6 +3100,7 @@ function playVideo(videoId, posterId) {
         .ending-section .matchstick-container {
             position: relative;
             width: 100%; height: 100vh;
+            overflow: visible;
         }
 
         .ending-bg {
