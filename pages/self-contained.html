@@ -1669,7 +1669,7 @@ function playVideo(videoId, posterId) {
     initStepFlowGlow();
 
     // ============ MATCHSTICK ANIMATION ============
-    (function initMatchstickAnimation() {
+    function initMatchstickAnimation() {
         const endingSection = document.getElementById('section-ending');
         const matchstick = document.getElementById('matchstick');
         const sparkContainer = document.getElementById('sparkContainer');
@@ -1698,68 +1698,64 @@ function playVideo(videoId, posterId) {
         }
 
         function runMatchstickSequence() {
-            // Phase 1: Matchstick visible (already shown)
             // Phase 2: Strike sparks at 1s
-            setTimeout(() => {
-                createSparks(sparkContainer);
-            }, 1000);
-
+            setTimeout(() => { createSparks(sparkContainer); }, 1000);
             // Phase 3: Hide matchstick, show glow orb at 2s
             setTimeout(() => {
                 matchstick.style.opacity = '0';
                 glowOrb.classList.add('active');
                 endingBg.classList.add('visible');
             }, 2000);
-
-            // Phase 4: Show title text at 3.5s
-            setTimeout(() => {
-                if (orbitTitle) orbitTitle.classList.add('visible');
-            }, 3500);
-
-            // Phase 5: Show left body text at 5s
-            setTimeout(() => {
-                if (orbitLeft1) orbitLeft1.classList.add('visible');
-            }, 5000);
-
+            // Phase 4: Show title at 3.5s
+            setTimeout(() => { if (orbitTitle) orbitTitle.classList.add('visible'); }, 3500);
+            // Phase 5: Show left text at 5s
+            setTimeout(() => { if (orbitLeft1) orbitLeft1.classList.add('visible'); }, 5000);
             // Phase 6: Show right text at 6.5s
-            setTimeout(() => {
-                if (orbitRight1) orbitRight1.classList.add('visible');
-            }, 6500);
-
+            setTimeout(() => { if (orbitRight1) orbitRight1.classList.add('visible'); }, 6500);
             // Phase 7: Show final quote at 8s
-            setTimeout(() => {
-                if (orbitFinal) orbitFinal.classList.add('visible');
-            }, 8000);
-
+            setTimeout(() => { if (orbitFinal) orbitFinal.classList.add('visible'); }, 8000);
             // Phase 8: Show source at 10s
-            setTimeout(() => {
-                if (endingSource) endingSource.classList.add('visible');
-            }, 10000);
+            setTimeout(() => { if (endingSource) endingSource.classList.add('visible'); }, 10000);
         }
 
-        const endingObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !entry.target.dataset.animated) {
-                    entry.target.dataset.animated = 'true';
-                    runMatchstickSequence();
-                    endingObserver.unobserve(entry.target);
-                }
+        // Method 1: IntersectionObserver
+        var triggered = false;
+        function triggerOnce() {
+            if (triggered) return;
+            triggered = true;
+            runMatchstickSequence();
+        }
+
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) { triggerOnce(); observer.unobserve(entry.target); }
             });
-        }, { threshold: 0.1 });
+        }, { threshold: 0.05 });
+        observer.observe(endingSection);
 
-        endingObserver.observe(endingSection);
-
-        // Fallback: trigger on scroll if observer doesn't fire
-        window.addEventListener('scroll', function checkEnding() {
-            if (endingSection.dataset.animated) return;
-            const rect = endingSection.getBoundingClientRect();
-            if (rect.top < window.innerHeight * 0.5) {
-                endingSection.dataset.animated = 'true';
-                runMatchstickSequence();
-                window.removeEventListener('scroll', checkEnding);
-            }
+        // Method 2: Scroll fallback
+        window.addEventListener('scroll', function() {
+            if (triggered) return;
+            var rect = endingSection.getBoundingClientRect();
+            if (rect.top < window.innerHeight * 0.7) { triggerOnce(); }
         });
-    })();
+
+        // Method 3: Fallback - if user is already at bottom when page loads
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                if (triggered) return;
+                var rect = endingSection.getBoundingClientRect();
+                if (rect.top < window.innerHeight) { triggerOnce(); }
+            }, 3000);
+        });
+    }
+
+    // Run when DOM is ready (script is at bottom, elements should exist)
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initMatchstickAnimation);
+    } else {
+        initMatchstickAnimation();
+    }
 
     // Re-observe new .reveal elements added for sections 9-14
     document.querySelectorAll('.reveal').forEach(el => {
