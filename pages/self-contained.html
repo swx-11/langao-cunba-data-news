@@ -1387,41 +1387,36 @@ function playVideo(videoId, posterId) {
     const counterObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const counters = entry.target.querySelectorAll('.counter, .stat-val[data-target]');
-                counters.forEach(counter => {
-                    if (counter.dataset.animated) return;
-                    counter.dataset.animated = 'true';
+                const el = entry.target;
+                if (el.dataset.animated) return;
+                el.dataset.animated = 'true';
 
-                    const target = parseFloat(counter.dataset.target);
-                    const suffix = counter.dataset.suffix || '';
-                    const isDecimal = target % 1 !== 0;
-                    const duration = 2000;
-                    const startTime = performance.now();
+                const target = parseFloat(el.dataset.target);
+                const suffix = el.dataset.suffix || '';
+                const isDecimal = target % 1 !== 0;
+                const duration = 2000;
+                const startTime = performance.now();
 
-                    function updateCounter(currentTime) {
-                        const elapsed = currentTime - startTime;
-                        const progress = Math.min(elapsed / duration, 1);
-                        // Ease out cubic
-                        const eased = 1 - Math.pow(1 - progress, 3);
-                        const current = eased * target;
-
-                        const formatted = isDecimal ? current.toFixed(1) : Math.floor(current).toLocaleString();
-                        counter.textContent = formatted + suffix;
-
-                        if (progress < 1) {
-                            requestAnimationFrame(updateCounter);
-                        } else {
-                            const finalFormatted = isDecimal ? target.toFixed(1) : target.toLocaleString();
-                            counter.textContent = finalFormatted + suffix;
-                        }
+                function updateCounter(currentTime) {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    const current = eased * target;
+                    const formatted = isDecimal ? current.toFixed(1) : Math.floor(current).toLocaleString();
+                    el.textContent = formatted + suffix;
+                    if (progress < 1) {
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        const finalFormatted = isDecimal ? target.toFixed(1) : target.toLocaleString();
+                        el.textContent = finalFormatted + suffix;
                     }
-                    requestAnimationFrame(updateCounter);
-                });
+                }
+                requestAnimationFrame(updateCounter);
             }
         });
-    }, { threshold: 0.3 });
+    }, { threshold: 0.1 });
 
-    document.querySelectorAll('.data-cards-section, .timeline-section, .cards-grid, .timeline-node').forEach(el => counterObserver.observe(el));
+    document.querySelectorAll('.counter, .stat-val[data-target]').forEach(el => counterObserver.observe(el));
 
     // ============ BAR CHART ANIMATION ============
     const barObserver = new IntersectionObserver((entries) => {
@@ -1436,7 +1431,7 @@ function playVideo(videoId, posterId) {
                 barObserver.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.3 });
+    }, { threshold: 0.1 });
 
     const barChart = document.getElementById('barChart');
     if (barChart) barObserver.observe(barChart);
@@ -1737,7 +1732,7 @@ function playVideo(videoId, posterId) {
                 trendBarObserver.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.3 });
+    }, { threshold: 0.1 });
     document.querySelectorAll('.trend-chart').forEach(el => trendBarObserver.observe(el));
 
     function toggleCharDetail(card) {
