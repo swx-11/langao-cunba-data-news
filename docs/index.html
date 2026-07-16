@@ -307,15 +307,15 @@
                     <div class="timeline-desc">7天、52场比赛，赛事直播、电商直播、文艺展演和产品促销第一次同时进入球场。</div>
                     <div class="timeline-stats">
                         <div class="timeline-stat">
-                            <div class="stat-val">24</div>
+                            <div class="stat-val" data-target="24">0</div>
                             <div class="stat-label">支球队</div>
                         </div>
                         <div class="timeline-stat">
-                            <div class="stat-val">52</div>
+                            <div class="stat-val" data-target="52">0</div>
                             <div class="stat-label">场比赛</div>
                         </div>
                         <div class="timeline-stat">
-                            <div class="stat-val">7</div>
+                            <div class="stat-val" data-target="7">0</div>
                             <div class="stat-label">天</div>
                         </div>
                     </div>
@@ -333,19 +333,19 @@
                     <div class="timeline-desc">89支球队、200余场比赛。县城巡游、岚河演艺、千人蹦迪和万人合唱，让观众不只为一场比赛而来。</div>
                     <div class="timeline-stats">
                         <div class="timeline-stat" style="background: rgba(0,194,168,0.1); border-color: rgba(0,194,168,0.2);">
-                            <div class="stat-val" style="color: var(--color-accent);">89</div>
+                            <div class="stat-val" style="color: var(--color-accent);" data-target="89">0</div>
                             <div class="stat-label">支球队</div>
                         </div>
                         <div class="timeline-stat" style="background: rgba(0,194,168,0.1); border-color: rgba(0,194,168,0.2);">
-                            <div class="stat-val" style="color: var(--color-accent);">200+</div>
+                            <div class="stat-val" style="color: var(--color-accent);" data-target="200" data-suffix="+">0</div>
                             <div class="stat-label">场赛事</div>
                         </div>
                         <div class="timeline-stat" style="background: rgba(0,194,168,0.1); border-color: rgba(0,194,168,0.2);">
-                            <div class="stat-val" style="color: var(--color-accent);">300+</div>
+                            <div class="stat-val" style="color: var(--color-accent);" data-target="300" data-suffix="+">0</div>
                             <div class="stat-label">次表演</div>
                         </div>
                         <div class="timeline-stat" style="background: rgba(0,194,168,0.1); border-color: rgba(0,194,168,0.2);">
-                            <div class="stat-val" style="color: var(--color-accent);">15亿</div>
+                            <div class="stat-val" style="color: var(--color-accent);" data-target="15" data-suffix="亿">0</div>
                             <div class="stat-label">次曝光</div>
                         </div>
                     </div>
@@ -363,19 +363,19 @@
                     <div class="timeline-desc">142支球队、400余场赛事、600余场演出。比赛、演艺、集市、文旅推介和乡镇展销开始共同运行。</div>
                     <div class="timeline-stats">
                         <div class="timeline-stat" style="background: rgba(255,209,102,0.1); border-color: rgba(255,209,102,0.2);">
-                            <div class="stat-val" style="color: var(--color-warm);">142</div>
+                            <div class="stat-val" style="color: var(--color-warm);" data-target="142">0</div>
                             <div class="stat-label">支球队</div>
                         </div>
                         <div class="timeline-stat" style="background: rgba(255,209,102,0.1); border-color: rgba(255,209,102,0.2);">
-                            <div class="stat-val" style="color: var(--color-warm);">400+</div>
+                            <div class="stat-val" style="color: var(--color-warm);" data-target="400" data-suffix="+">0</div>
                             <div class="stat-label">场赛事</div>
                         </div>
                         <div class="timeline-stat" style="background: rgba(255,209,102,0.1); border-color: rgba(255,209,102,0.2);">
-                            <div class="stat-val" style="color: var(--color-warm);">600+</div>
+                            <div class="stat-val" style="color: var(--color-warm);" data-target="600" data-suffix="+">0</div>
                             <div class="stat-label">场演出</div>
                         </div>
                         <div class="timeline-stat" style="background: rgba(255,209,102,0.1); border-color: rgba(255,209,102,0.2);">
-                            <div class="stat-val" style="color: var(--color-warm);">156亿</div>
+                            <div class="stat-val" style="color: var(--color-warm);" data-target="156" data-suffix="亿">0</div>
                             <div class="stat-label">次曝光</div>
                         </div>
                     </div>
@@ -1387,12 +1387,13 @@ function playVideo(videoId, posterId) {
     const counterObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const counters = entry.target.querySelectorAll('.counter');
+                const counters = entry.target.querySelectorAll('.counter, .stat-val[data-target]');
                 counters.forEach(counter => {
                     if (counter.dataset.animated) return;
                     counter.dataset.animated = 'true';
 
                     const target = parseFloat(counter.dataset.target);
+                    const suffix = counter.dataset.suffix || '';
                     const isDecimal = target % 1 !== 0;
                     const duration = 2000;
                     const startTime = performance.now();
@@ -1404,12 +1405,14 @@ function playVideo(videoId, posterId) {
                         const eased = 1 - Math.pow(1 - progress, 3);
                         const current = eased * target;
 
-                        counter.textContent = isDecimal ? current.toFixed(1) : Math.floor(current).toLocaleString();
+                        const formatted = isDecimal ? current.toFixed(1) : Math.floor(current).toLocaleString();
+                        counter.textContent = formatted + suffix;
 
                         if (progress < 1) {
                             requestAnimationFrame(updateCounter);
                         } else {
-                            counter.textContent = isDecimal ? target.toFixed(1) : target.toLocaleString();
+                            const finalFormatted = isDecimal ? target.toFixed(1) : target.toLocaleString();
+                            counter.textContent = finalFormatted + suffix;
                         }
                     }
                     requestAnimationFrame(updateCounter);
@@ -1419,6 +1422,7 @@ function playVideo(videoId, posterId) {
     }, { threshold: 0.3 });
 
     document.querySelectorAll('.cards-grid').forEach(el => counterObserver.observe(el));
+    document.querySelectorAll('.timeline-node').forEach(el => counterObserver.observe(el));
 
     // ============ BAR CHART ANIMATION ============
     const barObserver = new IntersectionObserver((entries) => {
@@ -1752,6 +1756,11 @@ function playVideo(videoId, posterId) {
             card.style.borderColor = 'rgba(255,255,255,0.06)';
         }
     }
+
+    // Ultimate fallback: force-trigger matchstick animation after 2s
+    setTimeout(function() {
+        if (typeof initMatchstickAnimation === 'function') initMatchstickAnimation();
+    }, 2000);
 
 </script>
 
@@ -3264,11 +3273,11 @@ function playVideo(videoId, posterId) {
         @keyframes dashFlow { 0% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: -26; } }
         .inner-ring-node, .outer-ring-node { position: absolute; z-index: 3; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.78rem; font-weight: 500; cursor: pointer; transition: all 0.3s ease; white-space: nowrap; }
         .inner-ring-node { background: rgba(0,194,168,0.15); color: var(--color-accent); border: 1px solid rgba(0,194,168,0.35); }
-        .inner-ring-node:hover { background: rgba(0,194,168,0.3); transform: scale(1.08); }
+        .inner-ring-node:hover { background: rgba(0,194,168,0.3); box-shadow: 0 0 15px rgba(0,194,168,0.4); }
         .inner-ring-node::after, .outer-ring-node::after { content: " \2726"; font-size: 0.6rem; opacity: 0.7; }
         .inner-ring-node:hover::after, .outer-ring-node:hover::after { opacity: 1; }
         .outer-ring-node { background: rgba(255,209,102,0.12); color: var(--color-warm); border: 1px solid rgba(255,209,102,0.3); }
-        .outer-ring-node:hover { background: rgba(255,209,102,0.25); transform: scale(1.08); }
+        .outer-ring-node:hover { background: rgba(255,209,102,0.25); box-shadow: 0 0 15px rgba(255,209,102,0.4); }
         .radiation-tooltip { position: absolute; background: rgba(7,27,44,0.95); border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; padding: 0.8rem 1rem; font-size: 0.82rem; color: var(--surface-text-secondary); max-width: 220px; pointer-events: none; opacity: 0; transition: opacity 0.3s ease; z-index: 20; line-height: 1.6; }
         .radiation-tooltip.show { opacity: 1; }
         .ecosystem-info { max-width: 900px; margin: 2.5rem auto 0; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
