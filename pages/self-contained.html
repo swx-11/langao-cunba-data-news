@@ -1421,8 +1421,7 @@ function playVideo(videoId, posterId) {
         });
     }, { threshold: 0.3 });
 
-    document.querySelectorAll('.cards-grid').forEach(el => counterObserver.observe(el));
-    document.querySelectorAll('.timeline-node').forEach(el => counterObserver.observe(el));
+    document.querySelectorAll('.data-cards-section, .timeline-section, .cards-grid, .timeline-node').forEach(el => counterObserver.observe(el));
 
     // ============ BAR CHART ANIMATION ============
     const barObserver = new IntersectionObserver((entries) => {
