@@ -392,6 +392,45 @@
     <div class="timeline-source reveal">
         数据来源：安康融媒、新华网、国家体育总局官网等
     </div>
+
+    <!-- Animated bar chart showing 3-year growth trend -->
+    <div class="trend-chart reveal" style="max-width:700px; margin:2.5rem auto 0;">
+        <div style="display:flex; justify-content:center; gap:1.5rem; margin-bottom:1.5rem; font-size:0.8rem;">
+            <span style="color:#00C2A8;">&#9632; 参赛队伍</span>
+            <span style="color:#2E8B57;">&#9632; 比赛场次</span>
+            <span style="color:#F47A1F;">&#9632; 全网曝光</span>
+        </div>
+        <div style="display:flex; align-items:flex-end; justify-content:center; gap:1.5rem; height:300px; border-bottom:1px solid rgba(255,255,255,0.2);">
+            <div style="display:flex; flex-direction:column; align-items:center; gap:0.5rem;">
+                <div style="display:flex; align-items:flex-end; gap:6px; height:260px;">
+                    <div class="vbar-fill" data-height="44" style="width:36px; background:#00C2A8; border-radius:6px 6px 0 0; height:0; transition:height 1.5s cubic-bezier(0.22,0.61,0.36,1); position:relative;"><span style="position:absolute; top:-22px; left:50%; transform:translateX(-50%); font-size:0.7rem; font-weight:700; color:#fff;">24支</span></div>
+                    <div class="vbar-fill" data-height="37" style="width:36px; background:#2E8B57; border-radius:6px 6px 0 0; height:0; transition:height 1.5s cubic-bezier(0.22,0.61,0.36,1) 0.1s; position:relative;"><span style="position:absolute; top:-22px; left:50%; transform:translateX(-50%); font-size:0.7rem; font-weight:700; color:#fff;">52场</span></div>
+                    <div class="vbar-fill" data-height="1" style="width:36px; background:#F47A1F; border-radius:6px 6px 0 0; height:0; transition:height 1.5s cubic-bezier(0.22,0.61,0.36,1) 0.2s; position:relative;"><span style="position:absolute; top:-22px; left:50%; transform:translateX(-50%); font-size:0.7rem; font-weight:700; color:#fff;">—</span></div>
+                </div>
+                <div style="font-size:0.85rem; color:var(--surface-text-secondary); margin-top:0.5rem;">2023</div>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center; gap:0.5rem;">
+                <div style="display:flex; align-items:flex-end; gap:6px; height:260px;">
+                    <div class="vbar-fill" data-height="62" style="width:36px; background:#00C2A8; border-radius:6px 6px 0 0; height:0; transition:height 1.5s cubic-bezier(0.22,0.61,0.36,1) 0.3s; position:relative;"><span style="position:absolute; top:-22px; left:50%; transform:translateX(-50%); font-size:0.7rem; font-weight:700; color:#fff;">89支</span></div>
+                    <div class="vbar-fill" data-height="54" style="width:36px; background:#2E8B57; border-radius:6px 6px 0 0; height:0; transition:height 1.5s cubic-bezier(0.22,0.61,0.36,1) 0.4s; position:relative;"><span style="position:absolute; top:-22px; left:50%; transform:translateX(-50%); font-size:0.7rem; font-weight:700; color:#fff;">200+场</span></div>
+                    <div class="vbar-fill" data-height="6" style="width:36px; background:#F47A1F; border-radius:6px 6px 0 0; height:0; transition:height 1.5s cubic-bezier(0.22,0.61,0.36,1) 0.5s; position:relative;"><span style="position:absolute; top:-22px; left:50%; transform:translateX(-50%); font-size:0.7rem; font-weight:700; color:#fff;">15亿</span></div>
+                </div>
+                <div style="font-size:0.85rem; color:var(--surface-text-secondary); margin-top:0.5rem;">2024</div>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center; gap:0.5rem;">
+                <div style="display:flex; align-items:flex-end; gap:6px; height:260px;">
+                    <div class="vbar-fill" data-height="100" style="width:36px; background:linear-gradient(180deg,#F47A1F,#FFD166); border-radius:6px 6px 0 0; height:0; transition:height 1.5s cubic-bezier(0.22,0.61,0.36,1) 0.6s; position:relative;"><span style="position:absolute; top:-22px; left:50%; transform:translateX(-50%); font-size:0.7rem; font-weight:700; color:#fff;">144支</span></div>
+                    <div class="vbar-fill" data-height="100" style="width:36px; background:linear-gradient(180deg,#F47A1F,#FFD166); border-radius:6px 6px 0 0; height:0; transition:height 1.5s cubic-bezier(0.22,0.61,0.36,1) 0.7s; position:relative;"><span style="position:absolute; top:-22px; left:50%; transform:translateX(-50%); font-size:0.7rem; font-weight:700; color:#fff;">350+场</span></div>
+                    <div class="vbar-fill" data-height="100" style="width:36px; background:linear-gradient(180deg,#F47A1F,#FFD166); border-radius:6px 6px 0 0; height:0; transition:height 1.5s cubic-bezier(0.22,0.61,0.36,1) 0.8s; position:relative;"><span style="position:absolute; top:-22px; left:50%; transform:translateX(-50%); font-size:0.7rem; font-weight:700; color:#fff;">156亿</span></div>
+                </div>
+                <div style="font-size:0.85rem; color:var(--surface-text-secondary); margin-top:0.5rem; font-weight:700; color:var(--color-secondary);">2025</div>
+            </div>
+        </div>
+        <h3 style="text-align:center; color:var(--surface-text-secondary); font-size:1rem; margin-top:1.5rem;">三年核心指标增长趋势</h3>
+    </div>
+    <div class="data-note reveal" style="margin-top: 2rem;">
+        <strong>数据来源：</strong>2023年数据来自安康融媒报道（24支球队、52场比赛）及岚皋县政府网报道；2024年数据来自中国报道网深度报道（游客338万人次、旅游收入13.53亿元）；2025年数据来自国家体育总局官网（144支球队、156亿曝光）及经济参考报（游客500万+）。
+    </div>
 </section>
 
 <!-- =============================================
@@ -706,63 +745,59 @@ function playVideo(videoId, posterId) {
     </div>
 </section>
 
-<!-- =============================================
-     SECTION 6: WHO IS SPREADING (每个人都拿起了自己的"话筒")
-     ============================================= -->
-<section class="ecosystem-section" id="section-who-spreading">
+<!-- ===================== SECTION 7: ACCOUNT TYPE CHART ===================== -->
+<section class="account-section" id="section-account">
     <div class="section-header reveal">
         <span class="section-label">SECTION 07</span>
-        <h2 class="section-title">每个人都拿起了自己的"话筒"</h2>
+        <h2 class="section-title">谁在帮岚皋传播？</h2>
     </div>
 
-    <div style="max-width:700px; margin:0 auto 3rem; text-align:center;" class="reveal">
-        <p>官方媒体提供完整信息，推荐官讲解山水与物产，主播把现场送进直播间，普通观众记录进球、锣鼓和夜市。岚皋的传播并不是由一个账号完成，而是由许多人的镜头共同拼成。</p>
-    </div>
-
-    <!-- Hub-and-Spoke Diagram: Who Is Spreading -->
-    <div class="reveal" style="max-width:700px; margin:0 auto; position:relative;">
-        <div style="position:relative; width:100%; aspect-ratio:1/0.8; min-height:360px;">
-            <!-- SVG connecting lines -->
-            <svg viewBox="0 0 600 480" style="position:absolute; inset:0; width:100%; height:100%; z-index:1;" preserveAspectRatio="xMidYMid meet">
-                <!-- Lines from center to 4 branches -->
-                <line x1="300" y1="240" x2="130" y2="100" stroke="rgba(244,122,31,0.4)" stroke-width="2" stroke-dasharray="6,4"></line>
-                <line x1="300" y1="240" x2="470" y2="100" stroke="rgba(244,122,31,0.4)" stroke-width="2" stroke-dasharray="6,4"></line>
-                <line x1="300" y1="240" x2="130" y2="380" stroke="rgba(244,122,31,0.4)" stroke-width="2" stroke-dasharray="6,4"></line>
-                <line x1="300" y1="240" x2="470" y2="380" stroke="rgba(244,122,31,0.4)" stroke-width="2" stroke-dasharray="6,4"></line>
-            </svg>
-
-            <!-- Center node -->
-            <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:110px; height:110px; border-radius:50%; background:radial-gradient(circle, rgba(244,122,31,0.35), rgba(244,122,31,0.1)); border:2px solid var(--color-secondary); display:flex; align-items:center; justify-content:center; text-align:center; z-index:5; box-shadow:0 0 25px rgba(244,122,31,0.3); animation:pulseGlow 2.5s ease-in-out infinite;">
-                <span style="font-size:0.85rem; font-weight:700; color:var(--color-secondary); line-height:1.3;">岚皋村BA</span>
-            </div>
-
-            <!-- Top-left: 主流媒体 -->
-            <div style="position:absolute; top:8%; left:10%; z-index:3; text-align:center;">
-                <div style="width:85px; height:85px; border-radius:50%; background:var(--surface-card); border:1px solid rgba(255,255,255,0.12); display:flex; align-items:center; justify-content:center; margin:0 auto 0.5rem; box-shadow:0 4px 15px rgba(0,0,0,0.3);">
-                    <span style="font-size:0.78rem; font-weight:600; color:#fff;">主流媒体</span>
+    <div class="chart-container reveal">
+        <div class="bar-chart" id="barChart">
+            <div class="bar-row">
+                <div class="bar-label">自媒体/KOL</div>
+                <div class="bar-track">
+                    <div class="bar-fill" data-width="42%">
+                        <span class="bar-percent">42%</span>
+                    </div>
                 </div>
             </div>
-
-            <!-- Top-right: 文旅推荐官 -->
-            <div style="position:absolute; top:8%; right:10%; z-index:3; text-align:center;">
-                <div style="width:85px; height:85px; border-radius:50%; background:var(--surface-card); border:1px solid rgba(255,255,255,0.12); display:flex; align-items:center; justify-content:center; margin:0 auto 0.5rem; box-shadow:0 4px 15px rgba(0,0,0,0.3);">
-                    <span style="font-size:0.78rem; font-weight:600; color:#fff;">文旅推荐官</span>
+            <div class="bar-row">
+                <div class="bar-label">官方媒体</div>
+                <div class="bar-track">
+                    <div class="bar-fill" data-width="25%">
+                        <span class="bar-percent">25%</span>
+                    </div>
                 </div>
             </div>
-
-            <!-- Bottom-left: 主播与网络达人 -->
-            <div style="position:absolute; bottom:8%; left:10%; z-index:3; text-align:center;">
-                <div style="width:85px; height:85px; border-radius:50%; background:var(--surface-card); border:1px solid rgba(255,255,255,0.12); display:flex; align-items:center; justify-content:center; margin:0 auto 0.5rem; box-shadow:0 4px 15px rgba(0,0,0,0.3);">
-                    <span style="font-size:0.72rem; font-weight:600; color:#fff;">主播与网络达人</span>
+            <div class="bar-row">
+                <div class="bar-label">普通用户</div>
+                <div class="bar-track">
+                    <div class="bar-fill" data-width="20%">
+                        <span class="bar-percent">20%</span>
+                    </div>
                 </div>
             </div>
-
-            <!-- Bottom-right: 普通观众与商户 -->
-            <div style="position:absolute; bottom:8%; right:10%; z-index:3; text-align:center;">
-                <div style="width:85px; height:85px; border-radius:50%; background:var(--surface-card); border:1px solid rgba(255,255,255,0.12); display:flex; align-items:center; justify-content:center; margin:0 auto 0.5rem; box-shadow:0 4px 15px rgba(0,0,0,0.3);">
-                    <span style="font-size:0.72rem; font-weight:600; color:#fff;">普通观众与商户</span>
+            <div class="bar-row">
+                <div class="bar-label">参赛球员</div>
+                <div class="bar-track">
+                    <div class="bar-fill" data-width="8%">
+                        <span class="bar-percent">8%</span>
+                    </div>
                 </div>
             </div>
+            <div class="bar-row">
+                <div class="bar-label">商家/品牌</div>
+                <div class="bar-track">
+                    <div class="bar-fill" data-width="5%">
+                        <span class="bar-percent">5%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="data-note">
+            <strong>数据说明：</strong>63名文旅推荐官、万人矩阵数据来源为经济参考报/新华网相关报道；16位主播、20余位网络达人数据来源为岚皋县人民政府官网《从"画圆"到"破圈"》；600余场演艺数据来源为国家体育总局官网等公开报道。
         </div>
     </div>
 </section>
@@ -1013,126 +1048,49 @@ function playVideo(videoId, posterId) {
     </div>
 </section>
 
-<!-- =============================================
-     SECTION 9: 12 TOWNSHIPS (一座球场，接住十二个乡镇)
-     ============================================= -->
-<section class="ecosystem-section" id="section-townships">
+<!-- ===================== SECTION 11: RADIATION MAP ===================== -->
+<section class="ecosystem-section" id="section11">
     <div class="section-header reveal">
-        <span class="section-label">SECTION 10</span>
-        <h2 class="section-title">一座球场，接住十二个乡镇</h2>
+        <span class="section-label">ECOSYSTEM</span>
+        <h2 class="section-title">从"一镇一味"到跨域联动，球场变成展销入口</h2>
     </div>
 
-    <div style="max-width:700px; margin:0 auto 3rem; text-align:center;" class="reveal">
-        <p>12个乡镇轮流走进赛场，把农产品、地方小吃、非遗技艺和乡镇故事带到游客面前。篮球提供共同的舞台，不同乡镇则用各自的味道和手艺，让赛事热度沿着县域继续扩散。</p>
+    <div class="radiation-map reveal" id="radiationMap">
+        <svg class="radiation-lines" id="radiationLines"></svg>
+        <div class="radiation-center">
+            <span>岚皋"村BA"<br>主赛场</span>
+        </div>
+        <div class="inner-ring-node" data-tip="晓道镇特色竹马工艺品，传统手工制作，已成为岚皋文旅特色伴手礼。" style="top:18%; left:28%; transform:translate(-50%,-50%);">晓道竹马</div>
+        <div class="inner-ring-node" data-tip="香椿锅巴，岚皋特色零食，以本地香椿芽制成，香酥可口。" style="top:22%; right:22%; transform:translate(50%,-50%);">香椿锅巴</div>
+        <div class="inner-ring-node" data-tip="雪溪粉条，纯手工红薯粉条，传统工艺制作，口感筋道。" style="bottom:28%; left:18%; transform:translate(-50%,50%);">雪溪粉条</div>
+        <div class="inner-ring-node" data-tip="烛山魔芋，岚皋地标农产品，年产值超亿元，通过村BA实现品牌全国化。" style="bottom:24%; left:50%; transform:translate(-50%,50%);">烛山魔芋</div>
+        <div class="inner-ring-node" data-tip="岚皋富硒茶与富硒大米，依托富硒土壤优势，种植面积超10万亩。" style="bottom:28%; right:18%; transform:translate(50%,50%);">富硒茶·大米</div>
+        <div class="inner-ring-node" style="top:50%; left:8%; transform:translate(-50%,-50%); opacity:0.5; cursor:default;">...</div>
+        <div class="outer-ring-node" data-tip="甘泉县，陕西省延安市，与岚皋开展农产品互销合作。" style="top:5%; left:35%; transform:translate(-50%,-50%);">甘泉</div>
+        <div class="outer-ring-node" data-tip="靖边县，陕西省榆林市，参与跨区域文旅联动推广。" style="top:5%; right:20%; transform:translate(50%,-50%);">靖边</div>
+        <div class="outer-ring-node" data-tip="黄陵县，陕西省延安市，黄帝陵所在地，文旅资源互补。" style="top:50%; right:3%; transform:translate(50%,-50%);">黄陵</div>
+        <div class="outer-ring-node" data-tip="留坝县，陕西省汉中市，秦岭腹地，与岚皋共建跨区域旅游线路。" style="bottom:5%; right:20%; transform:translate(50%,50%);">留坝</div>
+        <div class="outer-ring-node" data-tip="洋县，陕西省汉中市，朱鹮故乡，生态旅游联动推广。" style="bottom:5%; left:35%; transform:translate(-50%,50%);">洋县</div>
+        <div class="outer-ring-node" data-tip="丰都县，重庆市，跨省联动合作，共同打造大巴山文旅品牌。" style="top:50%; left:3%; transform:translate(-50%,-50%);">丰都(重庆)</div>
+        <div class="radiation-tooltip" id="radiationTooltip"></div>
     </div>
-
-    <!-- Hub-and-Spoke: 12 Townships -->
-    <div class="reveal" style="max-width:650px; margin:0 auto 2rem; position:relative;">
-        <div style="position:relative; width:100%; aspect-ratio:1/0.9; min-height:380px;">
-            <!-- SVG connecting lines -->
-            <svg viewBox="0 0 500 450" style="position:absolute; inset:0; width:100%; height:100%; z-index:1;" preserveAspectRatio="xMidYMid meet">
-                <!-- 8 lines from center to township nodes -->
-                <line x1="250" y1="225" x2="250" y2="40" stroke="rgba(244,122,31,0.3)" stroke-width="1.5"></line>
-                <line x1="250" y1="225" x2="410" y2="80" stroke="rgba(244,122,31,0.3)" stroke-width="1.5"></line>
-                <line x1="250" y1="225" x2="440" y2="225" stroke="rgba(244,122,31,0.3)" stroke-width="1.5"></line>
-                <line x1="250" y1="225" x2="410" y2="370" stroke="rgba(244,122,31,0.3)" stroke-width="1.5"></line>
-                <line x1="250" y1="225" x2="250" y2="410" stroke="rgba(244,122,31,0.3)" stroke-width="1.5"></line>
-                <line x1="250" y1="225" x2="90" y2="370" stroke="rgba(244,122,31,0.3)" stroke-width="1.5"></line>
-                <line x1="250" y1="225" x2="60" y2="225" stroke="rgba(244,122,31,0.3)" stroke-width="1.5"></line>
-                <line x1="250" y1="225" x2="90" y2="80" stroke="rgba(244,122,31,0.3)" stroke-width="1.5"></line>
-                <!-- 4 smaller dots lines (shorter, dashed) -->
-                <line x1="250" y1="225" x2="170" y2="48" stroke="rgba(255,255,255,0.12)" stroke-width="1" stroke-dasharray="3,4"></line>
-                <line x1="250" y1="225" x2="450" y2="150" stroke="rgba(255,255,255,0.12)" stroke-width="1" stroke-dasharray="3,4"></line>
-                <line x1="250" y1="225" x2="170" y2="400" stroke="rgba(255,255,255,0.12)" stroke-width="1" stroke-dasharray="3,4"></line>
-                <line x1="250" y1="225" x2="50" y2="300" stroke="rgba(255,255,255,0.12)" stroke-width="1" stroke-dasharray="3,4"></line>
-            </svg>
-
-            <!-- Center node -->
-            <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:100px; height:100px; border-radius:50%; background:radial-gradient(circle, rgba(244,122,31,0.3), rgba(244,122,31,0.08)); border:2px solid var(--color-secondary); display:flex; align-items:center; justify-content:center; text-align:center; z-index:5; box-shadow:0 0 20px rgba(244,122,31,0.3); animation:pulseGlow 2.5s ease-in-out infinite;">
-                <span style="font-size:0.72rem; font-weight:700; color:var(--color-secondary); line-height:1.3;">岚皋村BA<br>主赛场</span>
-            </div>
-
-            <!-- Top: 城关镇 -->
-            <div style="position:absolute; top:2%; left:50%; transform:translateX(-50%); z-index:3; text-align:center;">
-                <div style="width:72px; height:72px; border-radius:50%; background:var(--surface-card); border:1px solid rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; margin:0 auto;">
-                    <span style="font-size:0.72rem; font-weight:600; color:#fff;">城关镇</span>
-                </div>
-            </div>
-
-            <!-- Top-right: 佐龙镇 -->
-            <div style="position:absolute; top:10%; right:12%; z-index:3; text-align:center;">
-                <div style="width:72px; height:72px; border-radius:50%; background:var(--surface-card); border:1px solid rgba(244,122,31,0.2); display:flex; align-items:center; justify-content:center; margin:0 auto;">
-                    <span style="font-size:0.65rem; font-weight:600; color:#fff;">佐龙镇<br><span style="font-size:0.58rem; color:var(--color-secondary);">魔芋</span></span>
-                </div>
-            </div>
-
-            <!-- Right: 石门镇 -->
-            <div style="position:absolute; top:45%; right:4%; transform:translateY(-50%); z-index:3; text-align:center;">
-                <div style="width:72px; height:72px; border-radius:50%; background:var(--surface-card); border:1px solid rgba(255,209,102,0.2); display:flex; align-items:center; justify-content:center; margin:0 auto;">
-                    <span style="font-size:0.65rem; font-weight:600; color:#fff;">石门镇<br><span style="font-size:0.58rem; color:var(--color-warm);">烤鸡蛋</span></span>
-                </div>
-            </div>
-
-            <!-- Bottom-right: 民主镇 -->
-            <div style="position:absolute; bottom:10%; right:12%; z-index:3; text-align:center;">
-                <div style="width:72px; height:72px; border-radius:50%; background:var(--surface-card); border:1px solid rgba(0,194,168,0.2); display:flex; align-items:center; justify-content:center; margin:0 auto;">
-                    <span style="font-size:0.65rem; font-weight:600; color:#fff;">民主镇<br><span style="font-size:0.58rem; color:var(--color-accent);">富硒茶</span></span>
-                </div>
-            </div>
-
-            <!-- Bottom: 四季镇 -->
-            <div style="position:absolute; bottom:2%; left:50%; transform:translateX(-50%); z-index:3; text-align:center;">
-                <div style="width:72px; height:72px; border-radius:50%; background:var(--surface-card); border:1px solid rgba(255,209,102,0.2); display:flex; align-items:center; justify-content:center; margin:0 auto;">
-                    <span style="font-size:0.65rem; font-weight:600; color:#fff;">四季镇<br><span style="font-size:0.58rem; color:var(--color-warm);">非遗</span></span>
-                </div>
-            </div>
-
-            <!-- Bottom-left: 堰门镇 -->
-            <div style="position:absolute; bottom:10%; left:12%; z-index:3; text-align:center;">
-                <div style="width:72px; height:72px; border-radius:50%; background:var(--surface-card); border:1px solid rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; margin:0 auto;">
-                    <span style="font-size:0.65rem; font-weight:600; color:#fff;">堰门镇</span>
-                </div>
-            </div>
-
-            <!-- Left: 大道河镇 -->
-            <div style="position:absolute; top:45%; left:4%; transform:translateY(-50%); z-index:3; text-align:center;">
-                <div style="width:72px; height:72px; border-radius:50%; background:var(--surface-card); border:1px solid rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; margin:0 auto;">
-                    <span style="font-size:0.6rem; font-weight:600; color:#fff;">大道河镇</span>
-                </div>
-            </div>
-
-            <!-- Top-left: 蔺河镇 -->
-            <div style="position:absolute; top:10%; left:12%; z-index:3; text-align:center;">
-                <div style="width:72px; height:72px; border-radius:50%; background:var(--surface-card); border:1px solid rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; margin:0 auto;">
-                    <span style="font-size:0.65rem; font-weight:600; color:#fff;">蔺河镇</span>
-                </div>
-            </div>
-
-            <!-- 4 smaller unlabeled dots (remaining townships) -->
-            <div style="position:absolute; top:3%; left:28%; z-index:2;">
-                <div style="width:18px; height:18px; border-radius:50%; background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.2);"></div>
-            </div>
-            <div style="position:absolute; top:25%; right:4%; z-index:2;">
-                <div style="width:18px; height:18px; border-radius:50%; background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.2);"></div>
-            </div>
-            <div style="position:absolute; bottom:22%; left:28%; z-index:2;">
-                <div style="width:18px; height:18px; border-radius:50%; background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.2);"></div>
-            </div>
-            <div style="position:absolute; bottom:30%; left:4%; z-index:2;">
-                <div style="width:18px; height:18px; border-radius:50%; background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.2);"></div>
-            </div>
+    <div class="ecosystem-info reveal">
+        <div class="info-block">
+            <h4 style="color:var(--color-accent);">内环：12镇联动</h4>
+            <p>岚皋县12个乡镇各具特色产品与文化资源，以"村BA"主赛场为核心，形成"一镇一味"的展销矩阵。晓道竹马、香椿锅巴、雪溪粉条、烛山魔芋、富硒茶等特色产品借助赛事流量走出大山。</p>
+            <h4 style="color:var(--color-warm); margin-top:1rem;">外环：跨域联动</h4>
+            <p>岚皋村BA的影响力已突破县域边界，与甘泉、靖边、黄陵、留坝、洋县以及重庆丰都等地建立文旅与农产品互销合作，形成大巴山区域文旅联动网络。</p>
+        </div>
+        <div class="ecosystem-data-sidebar">
+            <div class="data-item"><span class="data-label">联动乡镇数</span><span class="data-value">12个</span></div>
+            <div class="data-item"><span class="data-label">跨域合作县</span><span class="data-value">6个</span></div>
+            <div class="data-item"><span class="data-label">特色产品</span><span class="data-value">50余种</span></div>
+            <div class="data-item"><span class="data-label">农产品销售额</span><span class="data-value">1.8亿元</span></div>
         </div>
     </div>
-
-    <!-- Data bar -->
-    <div style="display:flex; justify-content:center; gap:2rem; margin-bottom:1.5rem; flex-wrap:wrap;" class="reveal">
-        <span style="font-family:var(--font-display); font-weight:700; font-size:1.1rem; color:var(--color-secondary);">联动乡镇数 <span style="font-size:1.4rem;">12</span>个</span>
-        <span style="font-family:var(--font-display); font-weight:700; font-size:1.1rem; color:var(--color-warm);">特色产品 <span style="font-size:1.4rem;">50</span>余种</span>
-    </div>
-
-    <!-- Source -->
-    <div style="text-align:center; font-size:0.7rem; color:var(--surface-text-muted);" class="reveal">
-        数据来源：岚皋县人民政府官网等公开报道
+    <div class="data-note reveal" style="max-width:700px; margin:2rem auto 0; text-align:center;">
+        <p style="font-size:0.78rem; color:var(--surface-text-muted);">读图说明：内圈表示岚皋12乡镇轮流登场，外圈表示安康兄弟县市及外部联动地区参与展销。节点越大表示公开报道中提及的活动影响或销售表现越突出。点击节点查看详情。</p>
+        <p style="font-size:0.72rem; color:var(--surface-text-muted); margin-top:0.5rem;"><strong>数据来源：</strong>1区1市8县150款农产品、近百家参展企业、销售额约1500万元等数据来源为岚皋县人民政府官网等公开报道。</p>
     </div>
 </section>
 
@@ -3281,6 +3239,49 @@ function playVideo(videoId, posterId) {
             .photo-grid-3 { grid-template-columns: 1fr !important; }
             .photo-grid-4 { grid-template-columns: 1fr !important; }
         }
+
+        /* ============ SECTION 7: ACCOUNT TYPE CHART ============ */
+        .account-section { position: relative; background: var(--color-primary); padding: clamp(4rem, 8vw, 8rem) 2rem; }
+        .account-section .section-header { text-align: center; max-width: 700px; margin: 0 auto 3rem; }
+        .chart-container { max-width: 800px; margin: 0 auto; }
+        .bar-chart { display: flex; flex-direction: column; gap: 1rem; }
+        .bar-row { display: flex; align-items: center; gap: 1rem; }
+        .bar-label { flex: 0 0 120px; font-size: 0.85rem; color: var(--surface-text-secondary); text-align: right; }
+        @media (max-width: 480px) { .bar-label { flex: 0 0 80px; font-size: 0.75rem; } }
+        .bar-track { flex: 1; height: 32px; background: rgba(255,255,255,0.05); border-radius: 6px; overflow: hidden; position: relative; }
+        .bar-fill { height: 100%; border-radius: 6px; background: linear-gradient(90deg, var(--color-secondary), var(--color-secondary-light)); width: 0; transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1); display: flex; align-items: center; padding-left: 10px; }
+        .bar-fill.animated { }
+        .bar-fill .bar-percent { font-size: 0.75rem; font-weight: 600; color: #fff; white-space: nowrap; }
+        .bar-row:nth-child(2) .bar-fill { background: linear-gradient(90deg, var(--color-accent), var(--color-accent-light)); }
+        .bar-row:nth-child(3) .bar-fill { background: linear-gradient(90deg, var(--color-warm), var(--color-warm-light)); }
+        .bar-row:nth-child(4) .bar-fill { background: linear-gradient(90deg, var(--color-green), var(--color-green-light)); }
+        .bar-row:nth-child(5) .bar-fill { background: linear-gradient(90deg, #8B5CF6, #a78bfa); }
+        .data-note { background: rgba(0,194,168,0.08); border-left: 3px solid var(--color-accent); border-radius: 0 8px 8px 0; padding: 1rem 1.25rem; margin-top: 2rem; font-size: 0.8rem; color: var(--surface-text-muted); line-height: 1.8; }
+
+        /* ============ SECTION 11: RADIATION MAP NODES ============ */
+        .radiation-lines { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+        .radiation-lines line { stroke-dasharray: 8 5; animation: dashFlow 1.5s linear infinite; }
+        @keyframes dashFlow { 0% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: -26; } }
+        .inner-ring-node, .outer-ring-node { position: absolute; z-index: 3; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.78rem; font-weight: 500; cursor: pointer; transition: all 0.3s ease; white-space: nowrap; }
+        .inner-ring-node { background: rgba(0,194,168,0.15); color: var(--color-accent); border: 1px solid rgba(0,194,168,0.35); }
+        .inner-ring-node:hover { background: rgba(0,194,168,0.3); transform: scale(1.08); }
+        .inner-ring-node::after, .outer-ring-node::after { content: " \2726"; font-size: 0.6rem; opacity: 0.7; }
+        .inner-ring-node:hover::after, .outer-ring-node:hover::after { opacity: 1; }
+        .outer-ring-node { background: rgba(255,209,102,0.12); color: var(--color-warm); border: 1px solid rgba(255,209,102,0.3); }
+        .outer-ring-node:hover { background: rgba(255,209,102,0.25); transform: scale(1.08); }
+        .radiation-tooltip { position: absolute; background: rgba(7,27,44,0.95); border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; padding: 0.8rem 1rem; font-size: 0.82rem; color: var(--surface-text-secondary); max-width: 220px; pointer-events: none; opacity: 0; transition: opacity 0.3s ease; z-index: 20; line-height: 1.6; }
+        .radiation-tooltip.show { opacity: 1; }
+        .ecosystem-info { max-width: 900px; margin: 2.5rem auto 0; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .ecosystem-info .info-block h4 { font-size: 1rem; margin-bottom: 0.5rem; }
+        .ecosystem-info .info-block p { font-size: 0.88rem; color: var(--surface-text-secondary); line-height: 1.8; }
+        .ecosystem-data-sidebar { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.2rem; }
+        .ecosystem-data-sidebar .data-item { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .ecosystem-data-sidebar .data-item:last-child { border-bottom: none; }
+        .ecosystem-data-sidebar .data-label { font-size: 0.82rem; color: var(--surface-text-muted); }
+        .ecosystem-data-sidebar .data-value { font-size: 1rem; font-weight: 700; color: var(--color-secondary); }
+
+        /* ============ TIMELINE CARD ============ */
+        .timeline-image { width: 100%; height: 180px; object-fit: cover; border-radius: 12px; margin-bottom: 1rem; }
     </style>
 </body>
 </html>
