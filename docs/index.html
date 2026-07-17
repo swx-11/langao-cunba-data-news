@@ -1260,14 +1260,15 @@ function playVideo(videoId, posterId) {
     // ============ HERO ANIMATION TRIGGER ============
     window.addEventListener('DOMContentLoaded', function() {
         setTimeout(function() {
-            document.getElementById('heroContent').classList.add('animate-in');
-        }, 2000); // After basketball finishes rolling
+            var hero = document.getElementById('heroContent');
+            if (hero) hero.classList.add('animate-in');
+        }, 2000);
     });
     // Fallback: also try load event
     window.addEventListener('load', function() {
         setTimeout(function() {
             var hero = document.getElementById('heroContent');
-            if (!hero.classList.contains('animate-in')) {
+            if (hero && !hero.classList.contains('animate-in')) {
                 hero.classList.add('animate-in');
             }
         }, 500);
@@ -1285,103 +1286,113 @@ function playVideo(videoId, posterId) {
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
     // ============ MAP LEVEL NAVIGATION (click buttons) ============
-    const mapStage = document.getElementById('mapStage');
-    const mapNav = document.getElementById('mapNav');
-    const mapNavBtns = mapNav.querySelectorAll('.map-nav-btn');
-    const mapDotsLayer = document.getElementById('mapDotsLayer');
-    const mapTooltip = document.getElementById('mapTooltip');
-    const ttName = document.getElementById('ttName');
-    const ttLocation = document.getElementById('ttLocation');
-    const ttType = document.getElementById('ttType');
-    const ttDesc = document.getElementById('ttDesc');
-    const mapQuestion = document.getElementById('mapQuestion');
-    const zoomMarker2 = document.getElementById('zoomMarker2');
-    const zoomMarkerLabel2 = document.getElementById('zoomMarkerLabel2');
-    const zoomMarker3 = document.getElementById('zoomMarker3');
-    const zoomMarkerLabel3 = document.getElementById('zoomMarkerLabel3');
+    (function() {
+        const mapStage = document.getElementById('mapStage');
+        const mapNav = document.getElementById('mapNav');
+        if (!mapStage || !mapNav) return;
 
-    let currentLevel = 1;
+        const mapNavBtns = mapNav.querySelectorAll('.map-nav-btn');
+        const mapDotsLayer = document.getElementById('mapDotsLayer');
+        const mapTooltip = document.getElementById('mapTooltip');
+        const ttName = document.getElementById('ttName');
+        const ttLocation = document.getElementById('ttLocation');
+        const ttType = document.getElementById('ttType');
+        const ttDesc = document.getElementById('ttDesc');
+        const mapQuestion = document.getElementById('mapQuestion');
+        const zoomMarker2 = document.getElementById('zoomMarker2');
+        const zoomMarkerLabel2 = document.getElementById('zoomMarkerLabel2');
+        const zoomMarker3 = document.getElementById('zoomMarker3');
+        const zoomMarkerLabel3 = document.getElementById('zoomMarkerLabel3');
 
-    // Button click handler
-    mapNavBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const level = parseInt(btn.dataset.level);
-            setMapLevel(level);
+        let currentLevel = 1;
+
+        // Button click handler
+        mapNavBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const level = parseInt(btn.dataset.level);
+                setMapLevel(level);
+            });
         });
-    });
 
-    function setMapLevel(level) {
-        currentLevel = level;
-        mapStage.setAttribute('data-level', level);
+        function setMapLevel(level) {
+            currentLevel = level;
+            mapStage.setAttribute('data-level', level);
 
-        // Update active button
-        mapNavBtns.forEach(b => b.classList.toggle('active', parseInt(b.dataset.level) === level));
+            // Update active button
+            mapNavBtns.forEach(b => b.classList.toggle('active', parseInt(b.dataset.level) === level));
 
-        // Show/hide dots layer (visible on level 1, hidden on deeper levels)
-        mapDotsLayer.style.opacity = level === 1 ? '1' : '0';
-        mapDotsLayer.style.transition = 'opacity 0.6s ease';
-        mapDotsLayer.style.pointerEvents = level === 1 ? 'auto' : 'none';
-
-        // Show/hide zoom markers
-        zoomMarker2.style.display = 'none';
-        zoomMarkerLabel2.style.display = 'none';
-        zoomMarker3.style.display = 'none';
-        zoomMarkerLabel3.style.display = 'none';
-
-        // Show question on last level
-        if (level === 4) {
-            mapQuestion.classList.add('visible');
-        } else {
-            mapQuestion.classList.remove('visible');
-        }
-    }
-
-    // ============ MAP TOOLTIP ============
-    const evDots = document.querySelectorAll('.ev-dot');
-    const typeLabels = {
-        basketball: '篮球',
-        football: '足球',
-        volleyball: '排球'
-    };
-
-    evDots.forEach(dot => {
-        dot.addEventListener('mouseenter', (e) => {
-            if (currentLevel !== 1) return;
-            const name = dot.dataset.name;
-            const loc = dot.dataset.location;
-            const type = dot.dataset.type;
-            const desc = dot.dataset.desc;
-
-            ttName.textContent = name;
-            ttLocation.textContent = loc;
-            ttType.textContent = typeLabels[type] || type;
-            ttType.className = 'tt-type ' + type;
-            ttDesc.textContent = desc;
-
-            mapTooltip.classList.add('show');
-
-            // Position tooltip near dot
-            const stageRect = mapStage.getBoundingClientRect();
-            const svgEl = document.getElementById('mapSvg');
-            const svgRect = svgEl.getBoundingClientRect();
-            // Get center of the dot group
-            const core = dot.querySelector('.ev-core');
-            if (core) {
-                const cx = parseFloat(core.getAttribute('cx')) || 0;
-                const cy = parseFloat(core.getAttribute('cy')) || 0;
-                // Convert SVG coords to percentage
-                const pctX = cx / 800 * 100;
-                const pctY = cy / 680 * 100;
-                mapTooltip.style.left = pctX + '%';
-                mapTooltip.style.top = (pctY + 5) + '%';
-                mapTooltip.style.transform = 'translate(-50%, 0)';
+            // Show/hide dots layer (visible on level 1, hidden on deeper levels)
+            if (mapDotsLayer) {
+                mapDotsLayer.style.opacity = level === 1 ? '1' : '0';
+                mapDotsLayer.style.transition = 'opacity 0.6s ease';
+                mapDotsLayer.style.pointerEvents = level === 1 ? 'auto' : 'none';
             }
-        });
 
-        dot.addEventListener('mouseleave', () => {
-            mapTooltip.classList.remove('show');
+            // Show/hide zoom markers
+            if (zoomMarker2) zoomMarker2.style.display = 'none';
+            if (zoomMarkerLabel2) zoomMarkerLabel2.style.display = 'none';
+            if (zoomMarker3) zoomMarker3.style.display = 'none';
+            if (zoomMarkerLabel3) zoomMarkerLabel3.style.display = 'none';
+
+            // Show question on last level
+            if (mapQuestion) {
+                if (level === 4) {
+                    mapQuestion.classList.add('visible');
+                } else {
+                    mapQuestion.classList.remove('visible');
+                }
+            }
+        }
+
+        // ============ MAP TOOLTIP ============
+        if (!mapTooltip || !ttName || !ttLocation || !ttType || !ttDesc) return;
+        const evDots = document.querySelectorAll('.ev-dot');
+        const typeLabels = {
+            basketball: '篮球',
+            football: '足球',
+            volleyball: '排球'
+        };
+
+        evDots.forEach(dot => {
+            dot.addEventListener('mouseenter', (e) => {
+                if (currentLevel !== 1) return;
+                const name = dot.dataset.name;
+                const loc = dot.dataset.location;
+                const type = dot.dataset.type;
+                const desc = dot.dataset.desc;
+
+                ttName.textContent = name;
+                ttLocation.textContent = loc;
+                ttType.textContent = typeLabels[type] || type;
+                ttType.className = 'tt-type ' + type;
+                ttDesc.textContent = desc;
+
+                mapTooltip.classList.add('show');
+
+                // Position tooltip near dot
+                const stageRect = mapStage.getBoundingClientRect();
+                const svgEl = document.getElementById('mapSvg');
+                if (!svgEl) return;
+                const svgRect = svgEl.getBoundingClientRect();
+                // Get center of the dot group
+                const core = dot.querySelector('.ev-core');
+                if (core) {
+                    const cx = parseFloat(core.getAttribute('cx')) || 0;
+                    const cy = parseFloat(core.getAttribute('cy')) || 0;
+                    // Convert SVG coords to percentage
+                    const pctX = cx / 800 * 100;
+                    const pctY = cy / 680 * 100;
+                    mapTooltip.style.left = pctX + '%';
+                    mapTooltip.style.top = (pctY + 5) + '%';
+                    mapTooltip.style.transform = 'translate(-50%, 0)';
+                }
+            });
+
+            dot.addEventListener('mouseleave', () => {
+                mapTooltip.classList.remove('show');
+            });
         });
-    });
+    })();
 
     // ============ COUNTER ANIMATION ============
     const counterObserver = new IntersectionObserver((entries) => {
