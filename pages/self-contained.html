@@ -52,6 +52,13 @@
 
     /* ============ BORROW CARDS ============ */
     .borrow-card { background: var(--surface-card); border: 1px solid var(--surface-border); border-radius: 16px; padding: 2rem 1.5rem; }
+    .chart-container { position: relative; width: 100%; }
+    .bar-chart { display: flex; flex-direction: column; gap: 0.8rem; }
+    .bar-row { display: flex; align-items: center; gap: 0.8rem; }
+    .bar-label { width: 80px; text-align: right; font-size: 0.85rem; color: var(--surface-text-secondary); flex-shrink: 0; }
+    .bar-track { flex: 1; height: 28px; background: rgba(255,255,255,0.06); border-radius: 6px; overflow: hidden; }
+    .bar-fill { height: 100%; width: 0; border-radius: 6px; background: linear-gradient(90deg, var(--color-primary), var(--color-secondary)); transition: width 1.2s cubic-bezier(0.22,0.61,0.36,1); display: flex; align-items: center; justify-content: flex-end; padding-right: 0.6rem; }
+    .bar-percent { font-size: 0.75rem; font-weight: 700; color: #fff; white-space: nowrap; }
     .borrow-card h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.3rem; }
     .borrow-card .borrow-subtitle { font-size: 0.85rem; color: var(--color-primary); margin-bottom: 0.8rem; }
 
@@ -90,7 +97,7 @@
     .map-stage { position: relative; max-width: 820px; margin: 0 auto; aspect-ratio: 4/3; overflow: hidden; border-radius: 12px; background: #0a1e33; }
     .map-base { position: absolute; inset: 0; background-image: url('assets/photos/china-map.jpg'); background-size: 110% auto; background-repeat: no-repeat; background-position: 30% 33%; filter: brightness(0.35) saturate(0.5) sepia(0.3) hue-rotate(190deg); }
     .map-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(7,27,44,0.75) 0%, rgba(15,45,71,0.55) 50%, rgba(7,27,44,0.75) 100%); pointer-events: none; }
-    .ev-dots-layer { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; transform: translate(-2%, 2%); pointer-events: none; }
+    .ev-dots-layer { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; transform: translate(-2%, 4%); pointer-events: none; }
     .ev-dot { display: block; }
     .ev-dot .ev-pulse { animation: evPulse 2.5s ease-in-out infinite; }
     @keyframes evPulse { 0%, 100% { r: 5; opacity: 0.6; } 50% { r: 10; opacity: 0; } }
@@ -427,10 +434,8 @@
             <div class="borrow-card reveal">
                 <h4>借智</h4>
                 <div class="borrow-subtitle">成熟经验被转化为岚皋方案</div>
-                <div style="display:flex; gap:1rem; margin-top:0.8rem; align-items:flex-start;">
-                    <img src="assets/photos/langao-scenery.jpg" alt="岚皋山水" style="width:120px; height:90px; object-fit:cover; border-radius:8px; flex-shrink:0;">
-                    <div>
-                        <p style="font-size:0.9rem; color:var(--surface-text-secondary); line-height:1.8;">岚皋主动走出去，观察成熟群众赛事如何组织比赛、承接游客、展示文化和联动商业。回到岚皋以后，这些经验被重新放进当地的篮球基础、县域空间和秦巴文化之中。</p>
+                <div>
+                    <p style="font-size:0.9rem; color:var(--surface-text-secondary); line-height:1.8;">岚皋主动走出去，观察成熟群众赛事如何组织比赛、承接游客、展示文化和联动商业。回到岚皋以后，这些经验被重新放进当地的篮球基础、县域空间和秦巴文化之中。</p>
                         <p style="font-size:0.82rem; color:var(--surface-text-muted); margin-top:0.4rem; line-height:1.7;">学习发生在外面，答案最终仍然写在岚皋。岚皋真正借到的，是组织赛事的方法，而不是复制另一座城市的样子。</p>
                     </div>
                 </div>
@@ -519,21 +524,42 @@
             <p style="font-size:0.95rem; color:var(--surface-text-secondary); line-height:2;">当每个人都可以记录现场，岚皋就不再只有一个官方镜头。</p>
         </div>
 
-        <!-- 传播主体关系图 -->
-        <div class="reveal" style="max-width:700px; margin:0 auto 3rem; text-align:center;">
-            <div style="position:relative; width:100%; padding:2rem 0;">
-                <!-- 中心 -->
-                <div style="display:inline-block; background:rgba(244,122,31,0.15); border:2px solid var(--color-primary); border-radius:50%; width:130px; height:130px; line-height:130px; text-align:center; font-weight:800; font-size:1rem; color:var(--color-primary); position:relative; z-index:2;">岚皋"村BA"</div>
-                <!-- 周围六类节点 -->
-                <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:0.8rem 1.2rem; margin-top:1.5rem;">
-                    <span style="background:var(--surface-card); border:1px solid var(--surface-border); border-radius:20px; padding:0.5rem 1.2rem; font-size:0.85rem; color:var(--surface-text);">官方媒体</span>
-                    <span style="background:var(--surface-card); border:1px solid var(--surface-border); border-radius:20px; padding:0.5rem 1.2rem; font-size:0.85rem; color:var(--surface-text);">文旅推荐官</span>
-                    <span style="background:var(--surface-card); border:1px solid var(--surface-border); border-radius:20px; padding:0.5rem 1.2rem; font-size:0.85rem; color:var(--surface-text);">参赛球员</span>
-                    <span style="background:var(--surface-card); border:1px solid var(--surface-border); border-radius:20px; padding:0.5rem 1.2rem; font-size:0.85rem; color:var(--surface-text);">主播达人</span>
-                    <span style="background:var(--surface-card); border:1px solid var(--surface-border); border-radius:20px; padding:0.5rem 1.2rem; font-size:0.85rem; color:var(--surface-text);">普通观众</span>
-                    <span style="background:var(--surface-card); border:1px solid var(--surface-border); border-radius:20px; padding:0.5rem 1.2rem; font-size:0.85rem; color:var(--surface-text);">商户企业</span>
+        <!-- 传播主体柱状图 -->
+        <div class="chart-container reveal" style="max-width:700px; margin:0 auto 1.5rem;">
+            <div class="bar-chart" id="barChart">
+                <div class="bar-row">
+                    <div class="bar-label">自媒体/KOL</div>
+                    <div class="bar-track">
+                        <div class="bar-fill" data-width="42%"><span class="bar-percent">42%</span></div>
+                    </div>
+                </div>
+                <div class="bar-row">
+                    <div class="bar-label">官方媒体</div>
+                    <div class="bar-track">
+                        <div class="bar-fill" data-width="25%"><span class="bar-percent">25%</span></div>
+                    </div>
+                </div>
+                <div class="bar-row">
+                    <div class="bar-label">普通用户</div>
+                    <div class="bar-track">
+                        <div class="bar-fill" data-width="20%"><span class="bar-percent">20%</span></div>
+                    </div>
+                </div>
+                <div class="bar-row">
+                    <div class="bar-label">参赛球员</div>
+                    <div class="bar-track">
+                        <div class="bar-fill" data-width="8%"><span class="bar-percent">8%</span></div>
+                    </div>
+                </div>
+                <div class="bar-row">
+                    <div class="bar-label">商家/品牌</div>
+                    <div class="bar-track">
+                        <div class="bar-fill" data-width="5%"><span class="bar-percent">5%</span></div>
+                    </div>
                 </div>
             </div>
+        </div>
+        <div class="reveal" style="max-width:700px; margin:0 auto 3rem; text-align:center;">
             <p style="font-size:0.9rem; color:var(--surface-text-muted); margin-top:0.5rem;">许多人的镜头，共同拼出了岚皋被看见的路径。</p>
         </div>
 
