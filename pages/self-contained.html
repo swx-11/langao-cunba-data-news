@@ -95,9 +95,9 @@
 
     /* ============ MAP SECTION ============ */
     .map-stage { position: relative; max-width: 820px; margin: 0 auto; aspect-ratio: 4/3; overflow: hidden; border-radius: 12px; background: #0a1e33; }
-    .map-base { position: absolute; inset: 0; background-image: url('assets/photos/china-map.jpg'); background-size: 110% auto; background-repeat: no-repeat; background-position: 30% 33%; filter: brightness(0.35) saturate(0.5) sepia(0.3) hue-rotate(190deg); }
+    .map-base { position: absolute; inset: 0; background-image: url('assets/photos/china-map.jpg'); background-size: 113% auto; background-repeat: no-repeat; background-position: 30% 33%; filter: brightness(0.35) saturate(0.5) sepia(0.3) hue-rotate(190deg); }
     .map-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(7,27,44,0.75) 0%, rgba(15,45,71,0.55) 50%, rgba(7,27,44,0.75) 100%); pointer-events: none; }
-    .ev-dots-layer { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; transform: translate(-2%, 4%); pointer-events: none; }
+    .ev-dots-layer { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; transform: translate(-2%, 6%); pointer-events: none; }
     .ev-dot { display: block; }
     .ev-dot .ev-pulse { animation: evPulse 2.5s ease-in-out infinite; }
     @keyframes evPulse { 0%, 100% { r: 5; opacity: 0.6; } 50% { r: 10; opacity: 0; } }
@@ -368,7 +368,7 @@
                     <div style="font-size:0.85rem; color:var(--color-primary); margin-top:0.5rem; font-weight:700;">2025</div>
                 </div>
             </div>
-            <p style="text-align:center; color:var(--surface-text-secondary); font-size:0.9rem; margin-top:1.5rem;">三年核心指标增长趋势</p>
+            <p style="text-align:center; color:var(--surface-text-secondary); font-size:0.9rem; margin-top:1.5rem;">三年核心指标增长趋势示意图</p>
         </div>
 
         <p class="reveal footnote" style="text-align:center; margin-top:1.5rem;">数据来源：安康融媒、新华网、国家体育总局官网等</p>
@@ -408,12 +408,12 @@
         </div>
 
         <div class="flex-video-data reveal" style="max-width:900px; margin:0 auto 3rem;">
-            <video controls playsinline preload="metadata" poster="assets/photos/match-scene-2.jpg"
+            <video controls playsinline preload="metadata" poster="assets/photos/match-scene-1.jpg"
                    style="width:100%; border-radius:12px; background:#000;">
                 <source src="assets/langao-basketball-history.mp4" type="video/mp4">
             </video>
             <div style="padding-top:1rem;">
-                <p style="font-size:1rem; color:var(--surface-text-secondary); line-height:2;">岚皋村级篮球场与群众篮球活动素材</p>
+                <p style="font-size:1rem; color:var(--surface-text-secondary); line-height:2;">岚皋篮球历史</p>
             </div>
         </div>
 
@@ -425,31 +425,50 @@
             <p style="font-size:1.05rem; color:var(--surface-text-secondary); line-height:2;">岚皋没有把别处的热闹原样搬进秦巴山中，而是把自己的篮球基础、地方文化、山水资源和普通群众重新编进赛事。借来的不是现成答案，而是重新组织本地资源的方法。</p>
         </div>
 
-        <div class="grid-4" style="margin-bottom:3rem;">
-            <div class="borrow-card reveal">
-                <h4>借势</h4>
-                <div class="borrow-subtitle">赛事热潮带来被看见的窗口</div>
-                <p style="font-size:0.9rem; color:var(--surface-text-secondary); line-height:1.8;">全国群众赛事持续升温，为岚皋提供了进入公共视野的机会；真正把目光留下来的，仍然是本地长期积累的篮球传统和县城故事。</p>
-            </div>
-            <div class="borrow-card reveal">
-                <h4>借智</h4>
-                <div class="borrow-subtitle">成熟经验被转化为岚皋方案</div>
+        <div class="grid-2 reveal" style="gap:1.5rem; margin-bottom:2rem;">
+            <div class="borrow-card" style="display:flex; flex-direction:column; gap:1rem;">
+                <img src="assets/photos/cunba-panorama.jpg" alt="赛事现场" style="width:100%; height:160px; object-fit:cover; border-radius:12px;">
                 <div>
-                    <p style="font-size:0.9rem; color:var(--surface-text-secondary); line-height:1.8;">岚皋主动走出去，观察成熟群众赛事如何组织比赛、承接游客、展示文化和联动商业。回到岚皋以后，这些经验被重新放进当地的篮球基础、县域空间和秦巴文化之中。</p>
-                        <p style="font-size:0.82rem; color:var(--surface-text-muted); margin-top:0.4rem; line-height:1.7;">学习发生在外面，答案最终仍然写在岚皋。岚皋真正借到的，是组织赛事的方法，而不是复制另一座城市的样子。</p>
-                    </div>
+                    <h4>借势</h4>
+                    <div class="borrow-subtitle">赛事热潮带来被看见的窗口</div>
+                    <p style="font-size:0.9rem; color:var(--surface-text-secondary); line-height:1.8;">全国群众赛事持续升温，为岚皋提供了进入公共视野的机会；真正把目光留下来的，仍然是本地长期积累的篮球传统和县城故事。</p>
                 </div>
             </div>
-            <div class="borrow-card reveal">
-                <h4>借景</h4>
-                <div class="borrow-subtitle">秦巴文化进入球场中心</div>
-                <p style="font-size:0.9rem; color:var(--surface-text-secondary); line-height:1.8;">大道锣鼓、晓道竹马、巴人唢呐、南宫雄狮、岚河演艺和县城巡游进入比赛间隙。观众等待下一次开球时，看到的仍然是岚皋。</p>
+            <div class="borrow-card" style="display:flex; flex-direction:column; gap:1rem;">
+                <img src="assets/photos/live-3.jpg" alt="赛事现场" style="width:100%; height:160px; object-fit:cover; border-radius:12px;">
+                <div>
+                    <h4>借人</h4>
+                    <div class="borrow-subtitle">整座县城成为赛事参与者</div>
+                    <p style="font-size:0.9rem; color:var(--surface-text-secondary); line-height:1.8;">球员负责比赛，演员负责表演，推荐官介绍山水与物产，主播把现场送进手机屏幕，商户接住游客，志愿者维持秩序，普通居民则用自己的镜头记录这一切。</p>
+                </div>
             </div>
-            <div class="borrow-card reveal">
-                <h4>借人</h4>
-                <div class="borrow-subtitle">整座县城成为赛事参与者</div>
-                <p style="font-size:0.9rem; color:var(--surface-text-secondary); line-height:1.8;">球员负责比赛，演员负责表演，推荐官介绍山水与物产，主播把现场送进手机屏幕，商户接住游客，志愿者维持秩序，普通居民则用自己的镜头记录这一切。</p>
+        </div>
+        <div class="grid-2 reveal" style="gap:1.5rem; margin-bottom:2rem;">
+            <div class="borrow-card" style="display:flex; flex-direction:column; gap:1rem;">
+                <img src="assets/photos/langao-tourist-map.jpg" alt="岚皋县旅游景点地图" style="width:100%; height:160px; object-fit:cover; border-radius:12px;">
+                <div>
+                    <h4>借景</h4>
+                    <div class="borrow-subtitle">秦巴文化进入球场中心</div>
+                    <p style="font-size:0.9rem; color:var(--surface-text-secondary); line-height:1.8;">大道锣鼓、晓道竹马、巴人唢呐、南宫雄狮、岚河演艺和县城巡游进入比赛间隙。观众等待下一次开球时，看到的仍然是岚皋。</p>
+                </div>
             </div>
+            <div class="borrow-card" style="display:flex; flex-direction:column; gap:1rem;">
+                <img src="assets/photos/audience-seats.jpg" alt="观众席" style="width:100%; height:160px; object-fit:cover; border-radius:12px;">
+                <div>
+                    <h4>借智</h4>
+                    <div class="borrow-subtitle">成熟经验被转化为岚皋方案</div>
+                    <p style="font-size:0.9rem; color:var(--surface-text-secondary); line-height:1.8;">岚皋主动走出去，观察成熟群众赛事如何组织比赛、承接游客、展示文化和联动商业。回到岚皋以后，这些经验被重新放进当地的篮球基础、县域空间和秦巴文化之中。</p>
+                    <p style="font-size:0.82rem; color:var(--surface-text-muted); margin-top:0.4rem; line-height:1.7;">学习发生在外面，答案最终仍然写在岚皋。岚皋真正借到的，是组织赛事的方法，而不是复制另一座城市的样子。</p>
+                </div>
+            </div>
+        </div>
+        <!-- 学习贵州视频 -->
+        <div class="reveal" style="max-width:800px; margin:0 auto 3rem;">
+            <video controls playsinline preload="metadata" poster="assets/photos/langao-scenery.jpg"
+                   style="width:100%; border-radius:12px; background:#000;">
+                <source src="assets/learn-from-guizhou.mp4" type="video/mp4">
+            </video>
+            <p style="font-size:0.82rem; color:var(--surface-text-muted); margin-top:0.5rem; text-align:center;">视频来源：【待补充】</p>
         </div>
 
         <div class="reveal" style="max-width:700px; margin:0 auto 4rem; text-align:center; padding:1.5rem 2rem; background:rgba(244,122,31,0.06); border:1px solid rgba(244,122,31,0.15); border-radius:12px;">
@@ -469,27 +488,21 @@
             <p style="font-size:1.05rem; color:var(--surface-text-secondary); line-height:2;">比赛开始前，赛事信息已经被拆解为剧情短片、球员邀约、推荐官推介、赛程预告和文旅内容。不同主体从不同角度讲述岚皋，让一场比赛提前进入观众的屏幕。</p>
         </div>
 
-        <div class="reveal" style="max-width:800px; margin-bottom:1rem; text-align:center;">
-            <p style="font-size:0.9rem; color:var(--surface-text-muted);">岚皋没有只发布一条比赛通知，而是先把赛事写进故事。</p>
-        </div>
-
-        <div class="flex-video-data reveal" style="max-width:900px; margin:0 auto 1.5rem;">
-            <video controls playsinline preload="metadata" poster="assets/photos/cunba-panorama.jpg"
-                   style="width:100%; border-radius:12px; background:#000;">
-                <source src="assets/langao-welcome.mp4" type="video/mp4">
-            </video>
-            <div style="padding-top:1rem;">
-                <p style="font-size:1rem; color:var(--surface-text-secondary); line-height:2;">剧情宣传片借助人物、场景和悬念，把比赛时间和地点转化为可以观看、可以转发的内容。</p>
+        <div class="reveal" style="display:flex; gap:1.5rem; max-width:900px; margin:0 auto 1.5rem; align-items:flex-start; flex-wrap:wrap;">
+            <div style="flex:1; min-width:280px;">
+                <video controls playsinline preload="metadata" poster="assets/photos/cunba-panorama.jpg"
+                       style="width:100%; border-radius:12px; background:#000;">
+                    <source src="assets/langao-welcome.mp4" type="video/mp4">
+                </video>
+                <p style="font-size:0.8rem; color:var(--surface-text-muted); margin-top:0.4rem;">岚皋没有只发布一条比赛通知，而是先把赛事写进故事。</p>
+            </div>
+            <div style="flex:0 0 auto; min-width:200px; max-width:360px;">
+                <p style="font-size:0.75rem; color:var(--surface-text-muted); margin-bottom:0.4rem;">岚皋"村BA"文旅推荐官官方账号</p>
+                <img src="assets/cunba-recommender-account.png" alt="岚皋村BA推荐官官方账号" style="width:100%; border-radius:12px; display:block;">
             </div>
         </div>
 
-        <div class="reveal" style="max-width:800px; margin-bottom:1rem; text-align:center;">
-            <img src="assets/cunba-recommender-account.png" alt="推荐官账号" style="max-width:400px; width:100%; border-radius:12px; margin:0 auto 1rem; display:block;">
-        </div>
-
-        <div class="reveal" style="max-width:700px; margin:0 auto 4rem; text-align:center;">
-            <p style="font-size:0.95rem; color:var(--surface-text-secondary); line-height:2;">内容被提前准备，再通过不同的人和账号送进不同的社交关系。岚皋并不是等待某一条视频偶然走红。</p>
-        </div>
+        <p class="reveal" style="font-size:1.15rem; font-weight:700; color:var(--color-secondary); line-height:2; max-width:700px; margin:0 auto 2rem; text-align:center;">内容被提前准备，再通过不同的人和账号送进不同的社交关系。岚皋并不是等待某一条视频偶然走红。</p>
 
         <!-- 赛中 -->
         <div class="reveal" style="margin-bottom:1.5rem;">
@@ -563,19 +576,28 @@
             <p style="font-size:0.9rem; color:var(--surface-text-muted); margin-top:0.5rem;">许多人的镜头，共同拼出了岚皋被看见的路径。</p>
         </div>
 
-        <!-- 主题曲视频 -->
-        <div class="reveal" style="margin-bottom:1.5rem;">
-            <h3 class="sub-title">一首歌，把赛场情绪留了下来</h3>
-        </div>
-        <div class="reveal" style="margin-bottom:1rem;">
-            <video id="videoTheme" controls playsinline preload="metadata" poster="assets/photos/night-panorama.jpg"
-                   style="width:100%; max-width:1000px; margin:0 auto; display:block; border-radius:16px; background:#000;">
-                <source src="assets/langao-love-story.mp4" type="video/mp4">
-            </video>
-        </div>
-        <div class="reveal" style="max-width:700px; margin:0 auto 4rem; text-align:center;">
-            <p style="font-size:1rem; color:var(--surface-text-secondary); line-height:2;">比赛让人们聚在一起。歌声让共同情绪拥有了可以带走的形状。当旋律再次响起，人们想起的不只是比分。</p>
-            <p style="font-size:0.85rem; color:var(--surface-text-muted); margin-top:1rem;">【待补充】</p>
+        <!-- 弹幕词云 -->
+        <style>
+        .danmaku-showcase { position: relative; max-width: 900px; margin: 0 auto 2rem; min-height: 280px; overflow: hidden; border-radius: 16px; background: var(--surface-card); border: 1px solid var(--surface-border); }
+        .dm-line { position: absolute; white-space: nowrap; font-size: 0.9rem; color: rgba(255,255,255,0.7); animation: dmScroll linear infinite; }
+        @keyframes dmScroll { 0% { transform: translateX(100vw); } 100% { transform: translateX(-100%); } }
+        </style>
+        <div class="danmaku-showcase reveal" style="padding:2rem;">
+            <div class="dm-line" style="top:10%; animation-duration:12s; animation-delay:0s; font-weight:600; color:#FFD166;">岚皋村BA太好看了！！</div>
+            <div class="dm-line" style="top:22%; animation-duration:10s; animation-delay:1.5s;">现场氛围感拉满了</div>
+            <div class="dm-line" style="top:35%; animation-duration:14s; animation-delay:3s; font-weight:600; color:#00C2A8;">一座城服务一个人，名不虚传</div>
+            <div class="dm-line" style="top:48%; animation-duration:11s; animation-delay:0.5s;">魔芋好好吃！！下次还来</div>
+            <div class="dm-line" style="top:60%; animation-duration:13s; animation-delay:2s; font-weight:600; color:#F47A1F;">竹马表演绝了，第一次见</div>
+            <div class="dm-line" style="top:73%; animation-duration:9s; animation-delay:4s;">志愿者太热情了，全程指路</div>
+            <div class="dm-line" style="top:85%; animation-duration:15s; animation-delay:1s;">从西安自驾来的，不虚此行</div>
+            <div class="dm-line" style="top:15%; animation-duration:11s; animation-delay:5s; color:rgba(255,255,255,0.5);">富硒茶也带了两盒回去</div>
+            <div class="dm-line" style="top:55%; animation-duration:12s; animation-delay:3.5s; color:rgba(255,255,255,0.5);">锣鼓一响整个球场都沸腾了</div>
+            <div class="dm-line" style="top:40%; animation-duration:10s; animation-delay:6s; color:rgba(255,255,255,0.5);">孩子说暑假还要来</div>
+            <div class="dm-line" style="top:68%; animation-duration:14s; animation-delay:2.5s; color:rgba(255,255,255,0.5);">烧烤摊排了好长的队</div>
+            <div class="dm-line" style="top:90%; animation-duration:11s; animation-delay:4.5s;">展展滴！岚皋方言太可爱了</div>
+            <div class="dm-line" style="top:5%; animation-duration:13s; animation-delay:7s; color:rgba(255,255,255,0.4);">现场几万人一起蹦迪太震撼了</div>
+            <div class="dm-line" style="top:30%; animation-duration:10s; animation-delay:5.5s; color:rgba(255,255,255,0.4);">民宿老板人也超好</div>
+            <div class="dm-line" style="top:78%; animation-duration:12s; animation-delay:6.5s; color:rgba(255,255,255,0.4);">全程免费停车太贴心了</div>
         </div>
 
         <!-- 赛后 -->
@@ -589,18 +611,22 @@
             <p style="font-size:1.05rem; color:var(--surface-text-secondary); line-height:2;">比赛结束后，游客被引向夜市、餐馆、景区和乡镇展销活动。停车、住宿、交通、餐饮和志愿服务共同承接线下客流，直播间和电商平台继续承接线上关注。</p>
         </div>
 
-        <div class="grid-2 reveal" style="margin-bottom:3rem;">
+        <div class="reveal" style="max-width:800px; margin:0 auto 2rem;">
+            <video controls playsinline preload="metadata" poster="assets/photos/cunba-panorama.jpg"
+                   style="width:100%; border-radius:12px; background:#000;">
+                <source src="assets/langao-welcome.mp4" type="video/mp4">
+            </video>
+            <p style="font-size:0.8rem; color:var(--surface-text-muted); margin-top:0.4rem; text-align:center;">视频来源：【待补充】</p>
+        </div>
+
+        <div class="grid-3 reveal" style="margin-bottom:3rem;">
             <div class="service-card">
                 <h4>"一座城服务一个人"</h4>
                 <p>推荐官介绍停车、住宿、美食；志愿服务；游客引导。</p>
                 <p style="margin-top:0.8rem; color:var(--surface-text-muted); font-size:0.88rem; line-height:1.8;">有人负责把游客请来，也有人负责告诉他们车停在哪里、住在哪里、吃什么、去哪里。</p>
             </div>
             <div class="service-card">
-                <h4>"汽修店免费检查"</h4>
-                <p style="color:var(--surface-text-muted); font-size:0.88rem; line-height:1.8;">一次免费的车辆检查，看似只是小服务，却让赛事体验延伸到球场之外。</p>
-            </div>
-            <div class="service-card">
-                <h4>"村BA主题餐厅优惠"</h4>
+                <h4>"村BA生活服务优惠"</h4>
                 <p style="color:var(--surface-text-muted); font-size:0.88rem; line-height:1.8;">商户通过赛事套餐、折扣和主题活动，把看台上的人气接进街巷消费。</p>
             </div>
             <div class="service-card">
@@ -646,33 +672,32 @@
                 约<span class="counter" data-target="500">0</span>万人次
             </div>
             <p style="font-size:1.05rem; color:var(--surface-text-secondary); max-width:600px; margin:0 auto 0.5rem;">岚皋游客接待规模持续扩大</p>
-            <p class="footnote">约500万人次的具体统计周期及范围尚待补充，以最终官方来源为准。</p>
+            <p class="footnote">约500万人次的具体统计周期及范围尚待补充，以最终官方来源为准。数据来源：经济参考报等公开报道。</p>
         </div>
 
         <!-- 三个经济案例 -->
         <div class="reveal" style="display:flex; flex-direction:column; gap:1.5rem; margin-bottom:3rem;">
-            <div class="econ-card">
-                <img src="assets/photos/wenchuang.jpg" alt="餐饮夜市">
+            <div class="econ-card reveal">
+                <img src="assets/photos/langao-night-market.jpg" alt="岚皋夜市">
                 <div class="econ-body">
-                    <h4>餐饮夜市商户</h4>
-                    <div class="econ-data">平时日营业额约600元，赛事期间达到1600元以上</div>
-                    <div class="econ-source">来源：岚皋县人民政府官网</div>
+                    <h4>餐饮夜市等商户</h4>
+                    <div class="econ-data">"村BA"商圈营业额达到3.35亿元，限上社零连续三月同比增长超25%</div>
+                    <div class="econ-source">来源：安康市人民政府官网/安康日报相关报道</div>
                 </div>
             </div>
-            <div class="econ-card">
-                <img src="assets/photos/match-scene-1.jpg" alt="魔芋富硒茶企业">
+            <div class="econ-card reveal">
+                <img src="assets/photos/langao-moyu.jpg" alt="岚皋魔芋">
                 <div class="econ-body">
-                    <h4>魔芋/富硒茶企业</h4>
-                    <div class="econ-data">赛事后首月订单量增长约30%</div>
-                    <div class="econ-source">来源：【来源待补充】</div>
+                    <h4>魔芋、富硒茶等农产品</h4>
+                    <div class="econ-data">农产品销售额约1.8亿元，环比增长42.47%</div>
+                    <div class="econ-source">来源：中国发展网相关报道</div>
                 </div>
             </div>
-            <div class="econ-card">
-                <img src="assets/photos/live-2.jpg" alt="返乡青年文创">
+            <div class="econ-card reveal">
+                <img src="assets/photos/handmade-rattan.jpg" alt="手工编藤">
                 <div class="econ-body">
-                    <h4>返乡青年/文创/非遗</h4>
-                    <div class="econ-data">【人物故事待补充】</div>
-                    <div class="econ-source">来源：【来源待补充】</div>
+                    <h4>返乡青年与非遗手艺</h4>
+                    <div class="econ-data">岚皋县电商中心在场馆内搭建固定直播间并开设专区宣传藤编工艺，售卖手工编造等</div>
                 </div>
             </div>
         </div>
