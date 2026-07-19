@@ -50,8 +50,16 @@
     .section-video { border-radius: 16px; background: #000; }
     .section-video + .video-caption { text-align: center; font-size: 0.85rem; color: var(--surface-text-muted); margin-top: 0.8rem; }
 
-    /* ============ BORROW CARDS ============ */
-    .borrow-card { background: var(--surface-card); border: 1px solid var(--surface-border); border-radius: 16px; padding: 2rem 1.5rem; }
+    /* ============ BORROW CARDS (EXPANDABLE) ============ */
+    .borrow-card { background: var(--surface-card); border: 1px solid var(--surface-border); border-radius: 16px; padding: 1.5rem; cursor: pointer; transition: all 0.3s ease; position: relative; overflow: hidden; }
+    .borrow-card::after { content: '+'; position: absolute; top: 1rem; right: 1.2rem; font-size: 1.3rem; color: var(--surface-text-muted); transition: transform 0.3s ease; }
+    .borrow-card.open::after { transform: rotate(45deg); }
+    .borrow-card:hover { border-color: rgba(244,122,31,0.3); }
+    .borrow-card h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .borrow-card .borrow-subtitle { font-size: 0.85rem; color: var(--color-primary); margin-bottom: 0.5rem; }
+    .borrow-card .borrow-summary { font-size: 0.9rem; color: var(--surface-text-secondary); line-height: 1.7; }
+    .borrow-card .borrow-detail { max-height: 0; overflow: hidden; transition: max-height 0.5s ease, padding 0.3s ease; font-size: 0.88rem; color: var(--surface-text-secondary); line-height: 1.8; }
+    .borrow-card.open .borrow-detail { max-height: 300px; padding-top: 0.8rem; }
     .chart-container { position: relative; width: 100%; }
     .bar-chart { display: flex; flex-direction: column; gap: 0.8rem; }
     .bar-row { display: flex; align-items: center; gap: 0.8rem; }
@@ -114,6 +122,21 @@
 
     /* ============ IP AVATAR ============ */
     .ip-avatar { width: 60px; height: 60px; border-radius: 50%; object-fit: contain; display: block; }
+
+    /* ============ MASCOT CARDS (EXPANDABLE) ============ */
+    .mascot-card { background: var(--surface-card); border: 1px solid var(--surface-border); border-radius: 16px; overflow: hidden; cursor: pointer; transition: all 0.3s ease; }
+    .mascot-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,0.3); }
+    .mascot-card img { width: 100%; height: 180px; object-fit: cover; object-position: center top; }
+    .mascot-card .mascot-info { padding: 1rem 1.2rem; }
+    .mascot-card .mascot-name { font-weight: 700; font-size: 1.05rem; color: #fff; }
+    .mascot-card .mascot-tag { font-size: 0.78rem; color: var(--surface-text-secondary); margin-top: 0.2rem; }
+    .mascot-card .mascot-stat { display: inline-block; margin-top: 0.5rem; padding: 0.2rem 0.6rem; border-radius: 8px; font-size: 0.78rem; font-weight: 600; }
+    .mascot-card:nth-child(1) .mascot-stat { background: rgba(244,122,31,0.15); color: var(--color-secondary); }
+    .mascot-card:nth-child(2) .mascot-stat { background: rgba(0,194,168,0.18); color: var(--color-accent); }
+    .mascot-card:nth-child(3) .mascot-stat { background: rgba(46,139,87,0.15); color: #2E8B57; }
+    .mascot-card:nth-child(4) .mascot-stat { background: rgba(255,209,102,0.18); color: var(--color-secondary); }
+    .mascot-detail { max-height: 0; overflow: hidden; transition: max-height 0.5s ease; font-size: 0.88rem; color: var(--surface-text-secondary); line-height: 1.8; }
+    .mascot-detail.open { max-height: 200px; padding: 0 1.2rem 1rem; }
 
     /* ============ RADIATION MAP ============ */
     .radiation-map { max-width: 900px; margin: 0 auto; position: relative; aspect-ratio: 1 / 0.85; }
@@ -198,6 +221,7 @@
         .econ-card { flex-direction: column; }
         .econ-card img { width: 100%; height: 180px; }
         .hero-content .hero-title { font-size: clamp(48px, 10vw, 80px); }
+        .mascot-card { break-inside: avoid; }
     }
     @media (max-width: 480px) {
         .grid-4 { grid-template-columns: 1fr !important; }
@@ -263,9 +287,9 @@
             <div class="map-overlay"></div>
             <svg class="ev-dots-layer" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
                 <g class="ev-dot" style="display:block;">
-                    <circle class="ev-pulse" cx="420" cy="380" r="5" fill="none" stroke="#F47A1F" stroke-width="1.5" opacity="0.6"></circle>
-                    <circle class="ev-core" cx="420" cy="380" r="5" fill="#F47A1F"></circle>
-                    <text class="ev-label" x="432" y="384">贵州</text>
+                    <circle class="ev-pulse" cx="420" cy="386" r="5" fill="none" stroke="#F47A1F" stroke-width="1.5" opacity="0.6"></circle>
+                    <circle class="ev-core" cx="420" cy="386" r="5" fill="#F47A1F"></circle>
+                    <text class="ev-label" x="432" y="390">贵州</text>
                 </g>
                 <g class="ev-dot" style="display:block;">
                     <circle class="ev-pulse" cx="580" cy="310" r="5" fill="none" stroke="#2E8B57" stroke-width="1.5" opacity="0.6"></circle>
@@ -425,41 +449,36 @@
             <p style="font-size:1.05rem; color:var(--surface-text-secondary); line-height:2;">岚皋没有把别处的热闹原样搬进秦巴山中，而是把自己的篮球基础、地方文化、山水资源和普通群众重新编进赛事。借来的不是现成答案，而是重新组织本地资源的方法。</p>
         </div>
 
-        <div class="grid-2 reveal" style="gap:1.5rem; margin-bottom:2rem;">
-            <div class="borrow-card" style="display:flex; flex-direction:column; gap:1rem;">
-                <img src="assets/photos/cunba-panorama.jpg" alt="赛事现场" style="width:100%; height:160px; object-fit:cover; border-radius:12px;">
-                <div>
-                    <h4>借势</h4>
-                    <div class="borrow-subtitle">赛事热潮带来被看见的窗口</div>
-                    <p style="font-size:0.9rem; color:var(--surface-text-secondary); line-height:1.8;">全国群众赛事持续升温，为岚皋提供了进入公共视野的机会；真正把目光留下来的，仍然是本地长期积累的篮球传统和县城故事。</p>
-                </div>
+        <div class="grid-2 reveal" style="gap:1.5rem; margin-bottom:1.5rem;">
+            <div class="borrow-card" onclick="this.classList.toggle('open')">
+                <img src="assets/photos/cunba-panorama.jpg" alt="赛事现场" style="width:100%; height:140px; object-fit:cover; border-radius:12px; margin-bottom:0.8rem;">
+                <h4>借势</h4>
+                <div class="borrow-subtitle">赛事热潮带来被看见的窗口</div>
+                <p class="borrow-summary">全国群众赛事持续升温，为岚皋提供了进入公共视野的机会。</p>
+                <div class="borrow-detail">真正把目光留下来的，仍然是本地长期积累的篮球传统和县城故事。岚皋没有追着热点跑，而是把赛事当作一个已有的基础去放大。</div>
             </div>
-            <div class="borrow-card" style="display:flex; flex-direction:column; gap:1rem;">
-                <img src="assets/photos/live-3.jpg" alt="赛事现场" style="width:100%; height:160px; object-fit:cover; border-radius:12px;">
-                <div>
-                    <h4>借人</h4>
-                    <div class="borrow-subtitle">整座县城成为赛事参与者</div>
-                    <p style="font-size:0.9rem; color:var(--surface-text-secondary); line-height:1.8;">球员负责比赛，演员负责表演，推荐官介绍山水与物产，主播把现场送进手机屏幕，商户接住游客，志愿者维持秩序，普通居民则用自己的镜头记录这一切。</p>
-                </div>
+            <div class="borrow-card" onclick="this.classList.toggle('open')">
+                <img src="assets/photos/match-scene-new.jpg" alt="比赛现场" style="width:100%; height:140px; object-fit:cover; border-radius:12px; margin-bottom:0.8rem;">
+                <h4>借人</h4>
+                <div class="borrow-subtitle">整座县城成为赛事参与者</div>
+                <p class="borrow-summary">球员负责比赛，演员负责表演，推荐官介绍山水与物产。</p>
+                <div class="borrow-detail">主播把现场送进手机屏幕，商户接住游客，志愿者维持秩序，普通居民则用自己的镜头记录这一切。每个人都在用自己的方式参与赛事。</div>
             </div>
         </div>
         <div class="grid-2 reveal" style="gap:1.5rem; margin-bottom:2rem;">
-            <div class="borrow-card" style="display:flex; flex-direction:column; gap:1rem;">
-                <img src="assets/photos/langao-tourist-map.jpg" alt="岚皋县旅游景点地图" style="width:100%; height:160px; object-fit:cover; border-radius:12px;">
-                <div>
-                    <h4>借景</h4>
-                    <div class="borrow-subtitle">秦巴文化进入球场中心</div>
-                    <p style="font-size:0.9rem; color:var(--surface-text-secondary); line-height:1.8;">大道锣鼓、晓道竹马、巴人唢呐、南宫雄狮、岚河演艺和县城巡游进入比赛间隙。观众等待下一次开球时，看到的仍然是岚皋。</p>
-                </div>
+            <div class="borrow-card" onclick="this.classList.toggle('open')">
+                <img src="assets/photos/langao-tourist-map.jpg" alt="岚皋县旅游景点地图" style="width:100%; height:140px; object-fit:cover; border-radius:12px; margin-bottom:0.8rem;">
+                <h4>借景</h4>
+                <div class="borrow-subtitle">秦巴文化进入球场中心</div>
+                <p class="borrow-summary">大道锣鼓、晓道竹马、巴人唢呐、南宫雄狮进入比赛间隙。</p>
+                <div class="borrow-detail">岚河演艺和县城巡游让观众等待下一次开球时，看到的仍然是岚皋。文化不是赛事的包装，而是赛事的一部分。</div>
             </div>
-            <div class="borrow-card" style="display:flex; flex-direction:column; gap:1rem;">
-                <img src="assets/photos/audience-seats.jpg" alt="观众席" style="width:100%; height:160px; object-fit:cover; border-radius:12px;">
-                <div>
-                    <h4>借智</h4>
-                    <div class="borrow-subtitle">成熟经验被转化为岚皋方案</div>
-                    <p style="font-size:0.9rem; color:var(--surface-text-secondary); line-height:1.8;">岚皋主动走出去，观察成熟群众赛事如何组织比赛、承接游客、展示文化和联动商业。回到岚皋以后，这些经验被重新放进当地的篮球基础、县域空间和秦巴文化之中。</p>
-                    <p style="font-size:0.82rem; color:var(--surface-text-muted); margin-top:0.4rem; line-height:1.7;">学习发生在外面，答案最终仍然写在岚皋。岚皋真正借到的，是组织赛事的方法，而不是复制另一座城市的样子。</p>
-                </div>
+            <div class="borrow-card" onclick="this.classList.toggle('open')">
+                <img src="assets/photos/audience-seats.jpg" alt="观众席" style="width:100%; height:140px; object-fit:cover; border-radius:12px; margin-bottom:0.8rem;">
+                <h4>借智</h4>
+                <div class="borrow-subtitle">成熟经验被转化为岚皋方案</div>
+                <p class="borrow-summary">岚皋主动走出去，观察成熟群众赛事如何组织比赛、承接游客。</p>
+                <div class="borrow-detail">回到岚皋以后，这些经验被重新放进当地的篮球基础、县域空间和秦巴文化之中。学习发生在外面，答案最终仍然写在岚皋。岚皋真正借到的，是组织赛事的方法，而不是复制另一座城市的样子。</div>
             </div>
         </div>
         <!-- 学习贵州视频 -->
@@ -576,28 +595,62 @@
             <p style="font-size:0.9rem; color:var(--surface-text-muted); margin-top:0.5rem;">许多人的镜头，共同拼出了岚皋被看见的路径。</p>
         </div>
 
-        <!-- 弹幕词云 -->
+        <!-- 弹幕词云 — VOICES 引用卡设计 -->
         <style>
-        .danmaku-showcase { position: relative; max-width: 900px; margin: 0 auto 2rem; min-height: 280px; overflow: hidden; border-radius: 16px; background: var(--surface-card); border: 1px solid var(--surface-border); }
-        .dm-line { position: absolute; white-space: nowrap; font-size: 0.9rem; color: rgba(255,255,255,0.7); animation: dmScroll linear infinite; }
-        @keyframes dmScroll { 0% { transform: translateX(100vw); } 100% { transform: translateX(-100%); } }
+        .voices-stage { position: relative; max-width: 900px; margin: 0 auto 1.5rem; min-height: 240px; overflow: hidden; border-radius: 16px; background: rgba(244,122,31,0.04); border: 1px solid rgba(244,122,31,0.1); }
+        .v-item { position: absolute; white-space: nowrap; font-size: 0.88rem; padding: 0.4rem 0.9rem; border-radius: 20px; animation: vScroll linear infinite; }
+        .v-item.v-orange { color: var(--color-secondary); background: rgba(244,122,31,0.12); border: 1px solid rgba(244,122,31,0.25); }
+        .v-item.v-teal   { color: var(--color-accent); background: rgba(0,194,168,0.12); border: 1px solid rgba(0,194,168,0.25); }
+        .v-item.v-yellow  { color: var(--color-secondary); background: rgba(255,209,102,0.12); border: 1px solid rgba(255,209,102,0.25); }
+        .v-item.v-white   { color: #fff; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); }
+        .v-item.v-green   { color: #2E8B57; background: rgba(46,139,87,0.12); border: 1px solid rgba(46,139,87,0.25); }
+        @keyframes vScroll { 0% { transform: translateX(100vw); } 100% { transform: translateX(-100%); } }
+        .quote-cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; max-width: 900px; margin: 0 auto 1.5rem; }
+        .quote-card { background: var(--surface-card); border: 1px solid var(--surface-border); border-radius: 12px; padding: 1.2rem 1rem; transition: transform 0.3s ease, background 0.3s ease; }
+        .quote-card:hover { transform: translateY(-3px); background: rgba(255,255,255,0.05); }
+        .quote-card p { font-size: 0.92rem; color: var(--surface-text-secondary); line-height: 1.7; }
+        .quote-card .quote-source { font-size: 0.75rem; color: var(--surface-text-muted); margin-top: 0.5rem; }
+        @media (max-width: 768px) { .quote-cards-grid { grid-template-columns: 1fr; } }
         </style>
-        <div class="danmaku-showcase reveal" style="padding:2rem;">
-            <div class="dm-line" style="top:10%; animation-duration:12s; animation-delay:0s; font-weight:600; color:#FFD166;">岚皋村BA太好看了！！</div>
-            <div class="dm-line" style="top:22%; animation-duration:10s; animation-delay:1.5s;">现场氛围感拉满了</div>
-            <div class="dm-line" style="top:35%; animation-duration:14s; animation-delay:3s; font-weight:600; color:#00C2A8;">一座城服务一个人，名不虚传</div>
-            <div class="dm-line" style="top:48%; animation-duration:11s; animation-delay:0.5s;">魔芋好好吃！！下次还来</div>
-            <div class="dm-line" style="top:60%; animation-duration:13s; animation-delay:2s; font-weight:600; color:#F47A1F;">竹马表演绝了，第一次见</div>
-            <div class="dm-line" style="top:73%; animation-duration:9s; animation-delay:4s;">志愿者太热情了，全程指路</div>
-            <div class="dm-line" style="top:85%; animation-duration:15s; animation-delay:1s;">从西安自驾来的，不虚此行</div>
-            <div class="dm-line" style="top:15%; animation-duration:11s; animation-delay:5s; color:rgba(255,255,255,0.5);">富硒茶也带了两盒回去</div>
-            <div class="dm-line" style="top:55%; animation-duration:12s; animation-delay:3.5s; color:rgba(255,255,255,0.5);">锣鼓一响整个球场都沸腾了</div>
-            <div class="dm-line" style="top:40%; animation-duration:10s; animation-delay:6s; color:rgba(255,255,255,0.5);">孩子说暑假还要来</div>
-            <div class="dm-line" style="top:68%; animation-duration:14s; animation-delay:2.5s; color:rgba(255,255,255,0.5);">烧烤摊排了好长的队</div>
-            <div class="dm-line" style="top:90%; animation-duration:11s; animation-delay:4.5s;">展展滴！岚皋方言太可爱了</div>
-            <div class="dm-line" style="top:5%; animation-duration:13s; animation-delay:7s; color:rgba(255,255,255,0.4);">现场几万人一起蹦迪太震撼了</div>
-            <div class="dm-line" style="top:30%; animation-duration:10s; animation-delay:5.5s; color:rgba(255,255,255,0.4);">民宿老板人也超好</div>
-            <div class="dm-line" style="top:78%; animation-duration:12s; animation-delay:6.5s; color:rgba(255,255,255,0.4);">全程免费停车太贴心了</div>
+        <div class="voices-stage reveal" style="padding:1.5rem;">
+            <div class="v-item v-orange" style="top:8%; animation-duration:12s; animation-delay:0s;">岚皋人民好热情，外地人优先进！</div>
+            <div class="v-item v-teal" style="top:22%; animation-duration:15s; animation-delay:1.5s;">超级喜欢岚皋，还会再来的！</div>
+            <div class="v-item v-white" style="top:36%; animation-duration:10s; animation-delay:0.8s;">现场太精彩了。</div>
+            <div class="v-item v-yellow" style="top:50%; animation-duration:14s; animation-delay:3s;">感觉真的把岚皋带领起来了，很有感染力。</div>
+            <div class="v-item v-green" style="top:64%; animation-duration:11s; animation-delay:5s;">陕西岚皋村BA篮球比赛开展得太棒了。</div>
+            <div class="v-item v-orange" style="top:78%; animation-duration:13s; animation-delay:2s;">几百万人知道了岚皋这座美丽的城市。</div>
+            <div class="v-item v-teal" style="top:15%; animation-duration:16s; animation-delay:4s;">好听，在现场。</div>
+            <div class="v-item v-white" style="top:42%; animation-duration:9s; animation-delay:1s;">疲惫的身躯被岚皋人民的热情唤醒了。</div>
+            <div class="v-item v-yellow" style="top:85%; animation-duration:12s; animation-delay:6s;">好热闹，好热情！</div>
+            <div class="v-item v-green" style="top:28%; animation-duration:14s; animation-delay:2.5s;">下次还来岚皋！</div>
+            <div class="v-item v-orange" style="top:70%; animation-duration:11s; animation-delay:7s;">第一次来岚皋，就被震撼到了。</div>
+            <div class="v-item v-teal" style="top:55%; animation-duration:13s; animation-delay:0.5s;">一座城服务一个人，名不虚传。</div>
+        </div>
+        <div class="quote-cards-grid reveal">
+            <div class="quote-card">
+                <p>"疲惫的身躯被岚皋人民的热情唤醒了。"</p>
+                <span class="quote-source">-- 网友评论</span>
+            </div>
+            <div class="quote-card">
+                <p>"一座城服务一个人，名不虚传。"</p>
+                <span class="quote-source">-- 网友评论</span>
+            </div>
+            <div class="quote-card">
+                <p>"感觉真的把岚皋带领起来了，很有感染力。"</p>
+                <span class="quote-source">-- 网友评论</span>
+            </div>
+            <div class="quote-card">
+                <p>"岚皋的美食太好吃了，魔芋必须带走！"</p>
+                <span class="quote-source">-- 网友评论</span>
+            </div>
+            <div class="quote-card">
+                <p>"从西安自驾来的，全程不虚此行。"</p>
+                <span class="quote-source">-- 网友评论</span>
+            </div>
+            <div class="quote-card">
+                <p>"带孩子来感受一下，氛围真的太好了。"</p>
+                <span class="quote-source">-- 网友评论</span>
+            </div>
         </div>
 
         <!-- 赛后 -->
@@ -675,6 +728,66 @@
             <p class="footnote">约500万人次的具体统计周期及范围尚待补充，以最终官方来源为准。数据来源：经济参考报等公开报道。</p>
         </div>
 
+        <!-- 漏斗图：流量转化 -->
+        <style>
+        .sankey-flow { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; max-width: 700px; margin: 0 auto 1.5rem; }
+        .sankey-node { text-align: center; padding: 0.8rem 2rem; background: var(--surface-card); border: 1px solid var(--surface-border); border-radius: 12px; min-width: 200px; }
+        .sankey-node .node-label { font-size: 1rem; font-weight: 600; color: #fff; }
+        .sankey-node .node-value { font-size: 0.85rem; color: var(--color-secondary); margin-top: 0.25rem; }
+        .sankey-arrow { width: 2px; height: 24px; background: linear-gradient(to bottom, var(--color-primary), var(--color-secondary)); position: relative; }
+        .sankey-arrow::after { content: ''; position: absolute; bottom: -4px; left: 50%; transform: translateX(-50%); border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 6px solid var(--color-secondary); }
+        .sankey-branches { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; width: 100%; }
+        .sankey-branch { text-align: center; padding: 0.6rem 0.4rem; border-radius: 10px; font-size: 0.8rem; font-weight: 500; background: rgba(255,255,255,0.04); border: 1px solid var(--surface-border); color: var(--surface-text-secondary); cursor: pointer; transition: all 0.3s ease; }
+        .sankey-branch:hover { background: rgba(244,122,31,0.1); border-color: rgba(244,122,31,0.3); }
+        .sankey-branch .branch-icon { font-size: 1.2rem; display: block; margin-bottom: 0.2rem; }
+        .sankey-branch .branch-tag { display: inline-block; margin-top: 0.3rem; padding: 0.15rem 0.5rem; border-radius: 6px; font-size: 0.68rem; font-weight: 600; }
+        .tag-brand { background: rgba(0,194,168,0.2); color: var(--color-accent); }
+        .tag-industry { background: rgba(255,209,102,0.2); color: var(--color-secondary); }
+        .tag-retention { background: rgba(46,139,87,0.2); color: #2E8B57; }
+        .sankey-fanout { display: flex; justify-content: center; gap: 0.8rem; width: 60%; margin: 0 auto; }
+        .fanout-line { width: 1px; height: 16px; background: rgba(255,209,102,0.3); }
+        .sankey-fanin { display: flex; justify-content: center; gap: 1.2rem; width: 50%; margin: 0 auto; }
+        .fanin-line { width: 1px; height: 16px; background: rgba(255,209,102,0.3); }
+        .sankey-outcomes { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .sankey-outcome { padding: 0.5rem 1.2rem; border-radius: 10px; font-size: 0.85rem; font-weight: 600; }
+        .outcome-brand { background: rgba(0,194,168,0.15); color: var(--color-accent); border: 1px solid rgba(0,194,168,0.3); }
+        .outcome-industry { background: rgba(255,209,102,0.15); color: var(--color-secondary); border: 1px solid rgba(255,209,102,0.3); }
+        .outcome-retention { background: rgba(46,139,87,0.15); color: #2E8B57; border: 1px solid rgba(46,139,87,0.3); }
+        @media (max-width: 600px) { .sankey-branches { grid-template-columns: repeat(2, 1fr); } }
+        </style>
+        <div class="reveal" style="max-width:800px; margin:0 auto 1.5rem; text-align:center;">
+            <p style="font-size:1rem; color:var(--surface-text-secondary); line-height:1.8; margin-bottom:0.5rem;">流量没有停在球场，而是燃进街巷生意</p>
+            <p style="font-size:0.9rem; color:var(--surface-text-muted);">一场比赛，接住了住宿、夜市、特产和普通人的生意</p>
+        </div>
+        <div class="sankey-flow reveal">
+            <div class="sankey-node">
+                <div class="node-label">线上曝光</div>
+                <div class="node-value">156亿次</div>
+            </div>
+            <div class="sankey-arrow"></div>
+            <div class="sankey-node">
+                <div class="node-label">游客到访</div>
+                <div class="node-value">500万人次</div>
+            </div>
+            <div class="sankey-arrow"></div>
+            <div class="sankey-fanout"><div class="fanout-line"></div><div class="fanout-line"></div><div class="fanout-line"></div><div class="fanout-line"></div><div class="fanout-line"></div><div class="fanout-line"></div></div>
+            <div class="sankey-branches">
+                <div class="sankey-branch"><span class="branch-icon">🏨</span>住宿<span class="branch-tag tag-brand">城市品牌</span></div>
+                <div class="sankey-branch"><span class="branch-icon">🍜</span>餐饮夜市<span class="branch-tag tag-industry">产业转化</span></div>
+                <div class="sankey-branch"><span class="branch-icon">🌾</span>农产品<span class="branch-tag tag-retention">长期留量</span></div>
+                <div class="sankey-branch"><span class="branch-icon">🎨</span>文创IP<span class="branch-tag tag-brand">城市品牌</span></div>
+                <div class="sankey-branch"><span class="branch-icon">🏔️</span>景区<span class="branch-tag tag-industry">产业转化</span></div>
+                <div class="sankey-branch"><span class="branch-icon">🎭</span>演艺活动<span class="branch-tag tag-retention">长期留量</span></div>
+            </div>
+            <div class="sankey-fanin"><div class="fanin-line"></div><div class="fanin-line"></div><div class="fanin-line"></div><div class="fanin-line"></div><div class="fanin-line"></div><div class="fanin-line"></div></div>
+            <div class="sankey-arrow"></div>
+            <div class="sankey-outcomes">
+                <div class="sankey-outcome outcome-brand">城市品牌</div>
+                <div class="sankey-outcome outcome-industry">产业转化</div>
+                <div class="sankey-outcome outcome-retention">长期留量</div>
+            </div>
+        </div>
+
         <!-- 三个经济案例 -->
         <div class="reveal" style="display:flex; flex-direction:column; gap:1.5rem; margin-bottom:3rem;">
             <div class="econ-card reveal">
@@ -708,7 +821,7 @@
 
         <!-- 第二部分：十二个乡镇 -->
         <div class="reveal" style="margin-bottom:2rem;">
-            <h3 class="sub-title">十二个乡镇借同一座球场走向更大的市场</h3>
+            <h3 class="sub-title">从"一镇一味"到跨域联动，球场变成展销入口</h3>
         </div>
 
         <div class="radiation-map reveal" id="radiationMap">
@@ -716,23 +829,38 @@
             <div class="radiation-center">
                 <span>岚皋"村BA"<br>主赛场</span>
             </div>
-            <div class="inner-ring-node" data-tip="晓道镇特色竹马工艺品，传统手工制作，已成为岚皋文旅特色伴手礼。" style="top:18%; left:28%; transform:translate(-50%,-50%);">晓道竹马</div>
-            <div class="inner-ring-node" data-tip="香椿锅巴，岚皋特色零食，以本地香椿芽制成，香酥可口。" style="top:22%; right:22%; transform:translate(50%,-50%);">香椿锅巴</div>
-            <div class="inner-ring-node" data-tip="雪溪粉条，纯手工红薯粉条，传统工艺制作，口感筋道。" style="bottom:28%; left:18%; transform:translate(-50%,50%);">雪溪粉条</div>
-            <div class="inner-ring-node" data-tip="烛山魔芋，岚皋地标农产品，年产值超亿元，通过村BA实现品牌全国化。" style="bottom:24%; left:50%; transform:translate(-50%,50%);">烛山魔芋</div>
-            <div class="inner-ring-node" data-tip="岚皋富硒茶与富硒大米，依托富硒土壤优势，种植面积超10万亩。" style="bottom:28%; right:18%; transform:translate(50%,50%);">富硒茶·大米</div>
+            <div class="inner-ring-node" data-tip="晓道镇特色竹马工艺品，传统手工制作，已成为岚皋文旅特色伴手礼。" style="top:18%; left:28%; transform:translate(-50%,-50%);">🪵 晓道竹马</div>
+            <div class="inner-ring-node" data-tip="香椿锅巴，岚皋特色零食，以本地香椿芽制成，香酥可口。" style="top:22%; right:22%; transform:translate(50%,-50%);">🥜 香椿锅巴</div>
+            <div class="inner-ring-node" data-tip="雪溪粉条，纯手工红薯粉条，传统工艺制作，口感筋道。" style="bottom:28%; left:18%; transform:translate(-50%,50%);">🍠 雪溪粉条</div>
+            <div class="inner-ring-node" data-tip="烛山魔芋，岚皋地标农产品，年产值超亿元，通过村BA实现品牌全国化。" style="bottom:24%; left:50%; transform:translate(-50%,50%);">🌿 烛山魔芋</div>
+            <div class="inner-ring-node" data-tip="岚皋富硒茶与富硒大米，依托富硒土壤优势，种植面积超10万亩。" style="bottom:28%; right:18%; transform:translate(50%,50%);">🍵 富硒茶·大米</div>
             <div class="inner-ring-node" style="top:50%; left:8%; transform:translate(-50%,-50%); opacity:0.5; cursor:default;">...</div>
-            <div class="outer-ring-node" data-tip="甘泉县，陕西省延安市，与岚皋开展农产品互销合作。" style="top:5%; left:35%; transform:translate(-50%,-50%);">甘泉</div>
-            <div class="outer-ring-node" data-tip="靖边县，陕西省榆林市，参与跨区域文旅联动推广。" style="top:5%; right:20%; transform:translate(50%,-50%);">靖边</div>
-            <div class="outer-ring-node" data-tip="黄陵县，陕西省延安市，黄帝陵所在地，文旅资源互补。" style="top:50%; right:3%; transform:translate(50%,-50%);">黄陵</div>
-            <div class="outer-ring-node" data-tip="留坝县，陕西省汉中市，秦岭腹地，与岚皋共建跨区域旅游线路。" style="bottom:5%; right:20%; transform:translate(50%,50%);">留坝</div>
-            <div class="outer-ring-node" data-tip="洋县，陕西省汉中市，朱鹮故乡，生态旅游联动推广。" style="bottom:5%; left:35%; transform:translate(-50%,50%);">洋县</div>
-            <div class="outer-ring-node" data-tip="丰都县，重庆市，跨省联动合作，共同打造大巴山文旅品牌。" style="top:50%; left:3%; transform:translate(-50%,-50%);">丰都(重庆)</div>
+            <div class="outer-ring-node" data-tip="甘泉县，陕西省延安市，与岚皋开展农产品互销合作。" style="top:5%; left:35%; transform:translate(-50%,-50%);">🏜️ 甘泉</div>
+            <div class="outer-ring-node" data-tip="靖边县，陕西省榆林市，参与跨区域文旅联动推广。" style="top:5%; right:20%; transform:translate(50%,-50%);">🐴 靖边</div>
+            <div class="outer-ring-node" data-tip="黄陵县，陕西省延安市，黄帝陵所在地，文旅资源互补。" style="top:50%; right:3%; transform:translate(50%,-50%);">🏛️ 黄陵</div>
+            <div class="outer-ring-node" data-tip="留坝县，陕西省汉中市，秦岭腹地，与岚皋共建跨区域旅游线路。" style="bottom:5%; right:20%; transform:translate(50%,50%);">🌲 留坝</div>
+            <div class="outer-ring-node" data-tip="洋县，陕西省汉中市，朱鹮故乡，生态旅游联动推广。" style="bottom:5%; left:35%; transform:translate(-50%,50%);">🦅 洋县</div>
+            <div class="outer-ring-node" data-tip="丰都县，重庆市，跨省联动合作，共同打造大巴山文旅品牌。" style="top:50%; left:3%; transform:translate(-50%,-50%);">🎭 丰都(重庆)</div>
             <div class="radiation-tooltip" id="radiationTooltip"></div>
         </div>
 
+        <div class="reveal" style="display:grid; grid-template-columns:1fr 220px; gap:2rem; max-width:900px; margin:2rem auto 0; align-items:start;">
+            <div>
+                <h4 style="color:var(--color-accent); font-size:1rem; margin-bottom:0.5rem;">内环：12镇联动</h4>
+                <p style="font-size:0.88rem; color:var(--surface-text-secondary); line-height:1.8;">岚皋县12个乡镇各具特色产品与文化资源，以"村BA"主赛场为核心，形成"一镇一味"的展销矩阵。晓道竹马、香椿锅巴、雪溪粉条、烛山魔芋、富硒茶等特色产品借助赛事流量走出大山。</p>
+                <h4 style="color:var(--color-secondary); font-size:1rem; margin-top:1rem; margin-bottom:0.5rem;">外环：跨域联动</h4>
+                <p style="font-size:0.88rem; color:var(--surface-text-secondary); line-height:1.8;">岚皋村BA的影响力已突破县域边界，与甘泉、靖边、黄陵、留坝、洋县以及重庆丰都等地建立文旅与农产品互销合作，形成大巴山区域文旅联动网络。</p>
+            </div>
+            <div style="background:var(--surface-card); border:1px solid var(--surface-border); border-radius:12px; padding:1rem;">
+                <div style="padding:0.6rem 0; border-bottom:1px solid var(--surface-border);"><div style="font-size:0.78rem; color:var(--surface-text-muted);">联动乡镇数</div><div style="font-size:1rem; font-weight:700; color:var(--color-secondary);">12个</div></div>
+                <div style="padding:0.6rem 0; border-bottom:1px solid var(--surface-border);"><div style="font-size:0.78rem; color:var(--surface-text-muted);">跨域合作县</div><div style="font-size:1rem; font-weight:700; color:var(--color-secondary);">6个</div></div>
+                <div style="padding:0.6rem 0; border-bottom:1px solid var(--surface-border);"><div style="font-size:0.78rem; color:var(--surface-text-muted);">特色产品</div><div style="font-size:1rem; font-weight:700; color:var(--color-secondary);">50余种</div></div>
+                <div style="padding:0.6rem 0;"><div style="font-size:0.78rem; color:var(--surface-text-muted);">农产品销售额</div><div style="font-size:1rem; font-weight:700; color:var(--color-secondary);">1.8亿元</div></div>
+            </div>
+        </div>
+
         <div class="reveal footnote" style="text-align:center; margin-top:1.5rem; max-width:700px; margin-left:auto; margin-right:auto;">
-            读图说明：内圈表示岚皋12乡镇轮流登场，外圈表示安康兄弟县市及外部联动地区参与展销。点击节点查看详情。
+            读图说明：内圈表示岚皋12乡镇轮流登场，外圈表示安康兄弟县市及外部联动地区参与展销。<span style="color:var(--color-primary); font-weight:600;">点击节点查看详情</span>。
         </div>
 
         <!-- 第三部分：人们记住的不只是比赛比分 -->
@@ -743,43 +871,7 @@
             <p style="font-size:1.05rem; color:var(--surface-text-secondary); line-height:2;">在公开评论中，篮球只是人们认识岚皋的起点。观众还会谈论锣鼓、竹马、山水、美食、志愿服务和当地人的热情。赛事传播出去的，不只是一次比赛结果，也是一座县城留给外界的整体印象。</p>
         </div>
 
-        <!-- 词云 + 弹幕 -->
-        <style>
-        .word-cloud-wrap { position: relative; max-width: 900px; margin: 0 auto 1.5rem; min-height: 200px; overflow: hidden; border-radius: 16px; background: var(--surface-card); border: 1px solid var(--surface-border); padding: 2rem; }
-        .wc-word { position: absolute; white-space: nowrap; font-weight: 700; opacity: 0; animation: wcFloat 6s ease-in-out infinite; }
-        @keyframes wcFloat { 0% { opacity: 0; transform: translateY(10px); } 15% { opacity: 1; } 85% { opacity: 1; } 100% { opacity: 0; transform: translateY(-10px); } }
-        .danmaku-track { display: flex; flex-direction: column; gap: 0.6rem; max-width: 900px; margin: 0 auto 1.5rem; }
-        .danmaku-item { background: var(--surface-card); border: 1px solid var(--surface-border); border-radius: 24px; padding: 0.6rem 1.4rem; font-size: 0.9rem; color: var(--surface-text); display: inline-flex; align-items: center; gap: 0.6rem; max-width: 85%; opacity: 0; transform: translateX(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
-        .danmaku-item.visible { opacity: 1; transform: translateX(0); }
-        .danmaku-item .dm-source { font-size: 0.7rem; color: var(--surface-text-muted); flex-shrink: 0; }
-        .dm-avatar { width: 28px; height: 28px; border-radius: 50%; background: rgba(244,122,31,0.2); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; color: var(--color-primary); }
-        </style>
-        <div class="word-cloud-wrap reveal">
-            <span class="wc-word" style="top:12%; left:8%; font-size:1.6rem; color:#FFD166; animation-delay:0s;">热情</span>
-            <span class="wc-word" style="top:28%; left:35%; font-size:2.2rem; color:#F47A1F; animation-delay:0.8s;">好客</span>
-            <span class="wc-word" style="top:15%; right:15%; font-size:1.1rem; color:#00C2A8; animation-delay:1.6s;">村BA</span>
-            <span class="wc-word" style="top:55%; left:5%; font-size:1.4rem; color:#FFD166; animation-delay:2.2s;">美食</span>
-            <span class="wc-word" style="top:45%; left:45%; font-size:1.8rem; color:#F47A1F; animation-delay:0.4s;">篮球</span>
-            <span class="wc-word" style="top:70%; left:20%; font-size:1rem; color:#00C2A8; animation-delay:1.2s;">魔芋</span>
-            <span class="wc-word" style="top:60%; right:10%; font-size:1.3rem; color:#FFD166; animation-delay:1.8s;">一座城</span>
-            <span class="wc-word" style="top:80%; left:55%; font-size:1.5rem; color:#F47A1F; animation-delay:2.8s;">还会再来</span>
-            <span class="wc-word" style="top:35%; left:70%; font-size:0.95rem; color:#00C2A8; animation-delay:3.2s;">富硒茶</span>
-            <span class="wc-word" style="top:88%; left:8%; font-size:1.1rem; color:#FFD166; animation-delay:3.6s;">烟火气</span>
-            <span class="wc-word" style="top:8%; left:55%; font-size:1.2rem; color:#F47A1F; animation-delay:0.6s;">精彩</span>
-            <span class="wc-word" style="top:75%; right:25%; font-size:1rem; color:#00C2A8; animation-delay:2.4s;">志愿服务</span>
-            <span class="wc-word" style="top:48%; left:12%; font-size:0.85rem; color:#FFD166; animation-delay:1.4s;">竹马</span>
-            <span class="wc-word" style="top:22%; left:22%; font-size:0.9rem; color:#F47A1F; animation-delay:2s;">不虚此行</span>
-        </div>
-
-        <div class="danmaku-track">
-            <div class="danmaku-item reveal"><span class="dm-avatar">岚</span>疲惫的身躯被岚皋人民的热情唤醒了。<span class="dm-source">抖音</span></div>
-            <div class="danmaku-item reveal"><span class="dm-avatar">岚</span>一座城服务一个人，名不虚传。<span class="dm-source">视频号</span></div>
-            <div class="danmaku-item reveal"><span class="dm-avatar">岚</span>岚皋的美食太好吃了，魔芋必须带走！<span class="dm-source">抖音</span></div>
-            <div class="danmaku-item reveal"><span class="dm-avatar">岚</span>从西安自驾来的，全程不虚此行。<span class="dm-source">抖音</span></div>
-            <div class="danmaku-item reveal"><span class="dm-avatar">岚</span>竹马表演太惊艳了，第一次看到这种非遗。<span class="dm-source">视频号</span></div>
-            <div class="danmaku-item reveal"><span class="dm-avatar">岚</span>志愿者特别热情，路上有人专门指路。<span class="dm-source">抖音</span></div>
-        </div>
-
+        <!-- 评论引用 -->
         <div class="reveal footnote" style="max-width:700px; margin:0 auto 3rem; text-align:center;">
             评论选取自抖音、视频号等公开平台"岚皋村BA"相关话题下的公开评论。
         </div>
@@ -789,25 +881,45 @@
             <h3 class="sub-title">赛事记忆被转化为可以识别、可以带走的符号</h3>
         </div>
         <div class="reveal" style="text-align:center; margin-bottom:1.5rem;">
-            <div style="display:flex; justify-content:center; gap:1.5rem; margin-bottom:1.5rem;">
-                <div style="text-align:center;">
-                    <img src="assets/photos/ip-lanxiaoyu.jpg" alt="岚小芋" class="ip-avatar" style="margin:0 auto 0.5rem;">
-                    <div style="font-size:0.78rem; color:var(--surface-text-muted);">岚小芋</div>
+            <p style="font-size:0.95rem; color:var(--surface-text-secondary); line-height:2; max-width:700px; margin:0 auto 1.5rem;">从一句方言、一首主题曲，到赛事形象和文创产品，岚皋正在把短暂的关注转化为可以识别、可以带走的城市记忆。</p>
+            <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; max-width:900px; margin:0 auto;">
+                <div class="mascot-card" onclick="this.querySelector('.mascot-detail').classList.toggle('open')">
+                    <img src="assets/photos/ip-lanxiaoyu.jpg" alt="岚小芋">
+                    <div class="mascot-info">
+                        <div class="mascot-name">岚小芋</div>
+                        <div class="mascot-tag">魔芋形象IP</div>
+                        <div class="mascot-stat">16.2万亩</div>
+                    </div>
+                    <div class="mascot-detail">岚小芋以岚皋魔芋为原型设计，象征岚皋最大的农业产业。岚皋魔芋种植面积达16.2万亩，是当地最具代表性的富硒农产品之一。</div>
                 </div>
-                <div style="text-align:center;">
-                    <img src="assets/photos/ip-lanbao.jpg" alt="岚宝" class="ip-avatar" style="margin:0 auto 0.5rem;">
-                    <div style="font-size:0.78rem; color:var(--surface-text-muted);">岚宝</div>
+                <div class="mascot-card" onclick="this.querySelector('.mascot-detail').classList.toggle('open')">
+                    <img src="assets/photos/ip-lanbao.jpg" alt="岚宝">
+                    <div class="mascot-info">
+                        <div class="mascot-name">岚宝</div>
+                        <div class="mascot-tag">毛冠鹿 / 城市IP</div>
+                        <div class="mascot-stat">城市代言</div>
+                    </div>
+                    <div class="mascot-detail">岚宝以岚皋国家二级保护动物毛冠鹿为原型，是岚皋城市形象的核心代言人，代表着岚皋的生态禀赋与绿色发展理念。</div>
                 </div>
-                <div style="text-align:center;">
-                    <img src="assets/photos/ip-lanxiaoxi.jpg" alt="岚小硒" class="ip-avatar" style="margin:0 auto 0.5rem;">
-                    <div style="font-size:0.78rem; color:var(--surface-text-muted);">岚小硒</div>
+                <div class="mascot-card" onclick="this.querySelector('.mascot-detail').classList.toggle('open')">
+                    <img src="assets/photos/ip-lanxiaoxi.jpg" alt="岚小硒">
+                    <div class="mascot-info">
+                        <div class="mascot-name">岚小硒</div>
+                        <div class="mascot-tag">富硒产品IP</div>
+                        <div class="mascot-stat">10万亩+</div>
+                    </div>
+                    <div class="mascot-detail">岚小硒代表岚皋富硒茶、富硒大米等富硒系列产品。依托富硒土壤优势，种植面积超10万亩，是岚皋健康农业的标志性IP。</div>
                 </div>
-                <div style="text-align:center;">
-                    <img src="assets/photos/ip-lanxiaoxun.jpg" alt="岚小鲟" class="ip-avatar" style="margin:0 auto 0.5rem;">
-                    <div style="font-size:0.78rem; color:var(--surface-text-muted);">岚小鲟</div>
+                <div class="mascot-card" onclick="this.querySelector('.mascot-detail').classList.toggle('open')">
+                    <img src="assets/photos/ip-lanxiaoxun.jpg" alt="岚小鲟">
+                    <div class="mascot-info">
+                        <div class="mascot-name">岚小鲟</div>
+                        <div class="mascot-tag">大鲵 / 生态IP</div>
+                        <div class="mascot-stat">生态名片</div>
+                    </div>
+                    <div class="mascot-detail">岚小鲟以岚皋大鲵（娃娃鱼）为原型，代表岚皋优质的水生态环境。大鲵是岚皋重要的生态资源和特色养殖品种。</div>
                 </div>
             </div>
-            <p style="font-size:0.95rem; color:var(--surface-text-secondary); line-height:2; max-width:700px; margin:0 auto;">从一句方言、一首主题曲，到赛事形象和文创产品，岚皋正在把短暂的关注转化为可以识别、可以带走的城市记忆。</p>
         </div>
     </div>
 </section>
