@@ -292,9 +292,9 @@
             <div class="map-overlay"></div>
             <svg class="ev-dots-layer" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
                 <g class="ev-dot" style="display:block;">
-                    <circle class="ev-pulse" cx="420" cy="408" r="5" fill="none" stroke="#F47A1F" stroke-width="1.5" opacity="0.6"></circle>
-                    <circle class="ev-core" cx="420" cy="408" r="5" fill="#F47A1F"></circle>
-                    <text class="ev-label" x="432" y="412">贵州</text>
+                    <circle class="ev-pulse" cx="420" cy="417" r="5" fill="none" stroke="#F47A1F" stroke-width="1.5" opacity="0.6"></circle>
+                    <circle class="ev-core" cx="420" cy="417" r="5" fill="#F47A1F"></circle>
+                    <text class="ev-label" x="432" y="421">贵州</text>
                 </g>
                 <g class="ev-dot" style="display:block;">
                     <circle class="ev-pulse" cx="580" cy="310" r="5" fill="none" stroke="#2E8B57" stroke-width="1.5" opacity="0.6"></circle>
@@ -510,9 +510,9 @@
             <div style="flex:1; min-width:280px;">
                 <video controls playsinline preload="metadata" poster="assets/photos/cunba-panorama.jpg"
                        style="width:100%; border-radius:12px; background:#000;">
-                    <source src="https://raw.githubusercontent.com/swx-11/langao-cunba-data-news/main/docs/assets/langao-welcome.mp4" type="video/mp4">
+                    <source src="https://raw.githubusercontent.com/swx-11/langao-cunba-data-news/main/docs/assets/langao-love-story.mp4" type="video/mp4">
                 </video>
-                <p style="font-size:0.88rem; color:var(--surface-text-secondary); margin-top:0.4rem;">《岚皋欢迎你》宣传视频</p>
+                <p style="font-size:0.88rem; color:var(--surface-text-secondary); margin-top:0.4rem;">岚皋村BA宣传片《岚皋爱情故事》</p>
                 <p style="font-size:0.85rem; color:var(--surface-text-muted); margin-top:0.3rem; line-height:1.7;">岚皋没有只发布一条比赛通知，而是先把赛事写进故事。</p>
             </div>
             <div style="flex:0 0 auto; min-width:200px; max-width:360px;">
@@ -667,9 +667,9 @@
         <div class="reveal" style="max-width:800px; margin:0 auto 2rem;">
             <video controls playsinline preload="metadata" poster="assets/photos/cunba-panorama.jpg"
                    style="width:100%; border-radius:12px; background:#000;">
-                <source src="https://raw.githubusercontent.com/swx-11/langao-cunba-data-news/main/docs/assets/langao-love-story.mp4" type="video/mp4">
+                <source src="https://raw.githubusercontent.com/swx-11/langao-cunba-data-news/main/docs/assets/langao-welcome.mp4" type="video/mp4">
             </video>
-            <p style="font-size:0.88rem; color:var(--surface-text-secondary); margin-top:0.4rem; text-align:center;">岚皋村BA宣传片《岚皋爱情故事》</p>
+            <p style="font-size:0.88rem; color:var(--surface-text-secondary); margin-top:0.4rem; text-align:center;">《岚皋欢迎你》宣传视频</p>
         </div>
 
         <div class="grid-3 reveal" style="margin-bottom:3rem;">
@@ -766,9 +766,7 @@
 
         /* Character story cards */
         .character-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; max-width: 1100px; margin: 0 auto; }
-        .character-card { background: var(--surface-card); border-radius: 14px; padding: 1.2rem; cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; border: 1px solid rgba(255,255,255,0.06); position: relative; }
-        .character-card::after { content: "点击展开详情"; position: absolute; bottom: 10px; right: 12px; font-size: 0.65rem; color: var(--color-secondary); opacity: 0.6; pointer-events: none; transition: opacity 0.3s; }
-        .character-card:hover::after { opacity: 1; }
+        .character-card { background: var(--surface-card); border-radius: 14px; padding: 1.2rem; transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; border: 1px solid rgba(255,255,255,0.06); position: relative; }
         .character-card:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,0.3); border-color: rgba(244,122,31,0.3); }
         .character-card .card-header { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.8rem; }
         .character-card .card-icon { font-size: 1.8rem; flex-shrink: 0; }
@@ -777,8 +775,7 @@
         .character-card .card-stat { margin-left: auto; font-size: 0.78rem; font-weight: 700; color: var(--color-secondary); background: rgba(244,122,31,0.12); padding: 0.25rem 0.7rem; border-radius: 8px; white-space: nowrap; flex-shrink: 0; }
         .character-card .card-header > div { min-width: 0; overflow: hidden; }
         .character-card .card-quote { font-size: 0.9rem; color: var(--surface-text-secondary); line-height: 1.7; border-left: 3px solid var(--color-secondary); padding-left: 0.8rem; margin-bottom: 0; }
-        .character-card .char-detail { max-height: 0; overflow: hidden; transition: max-height 0.5s ease, margin-top 0.4s ease, opacity 0.4s ease; font-size: 0.85rem; color: var(--surface-text-secondary); line-height: 1.7; opacity: 0; }
-        .character-card .char-detail.open { max-height: 200px; margin-top: 0.8rem; opacity: 1; }
+        .character-card .char-detail { font-size: 0.85rem; color: var(--surface-text-secondary); line-height: 1.7; margin-top: 0.8rem; }
         .stories-summary { margin-top: 2rem; font-size: 0.9rem; color: var(--surface-text-secondary); line-height: 1.8; text-align: center; max-width: 700px; margin-left: auto; margin-right: auto; }
         @media (max-width: 768px) { .character-cards { grid-template-columns: 1fr; } }
         </style>
@@ -827,7 +824,7 @@
             <h3 class="sub-title" style="text-align:center; margin-bottom:0.5rem;">流量背后的普通人</h3>
             <p style="text-align:center; font-size:0.9rem; color:var(--surface-text-muted); margin-bottom:2rem;">每一条数据背后，都是一个真实的人生被改变的故事</p>
             <div class="character-cards">
-                <div class="character-card" onclick="toggleCharDetail(this)">
+                <div class="character-card">
                     <div class="card-header">
                         <span class="card-icon">🍜</span>
                         <div><div class="card-name">庆嫂麻辣烫</div><div class="card-type">餐饮</div></div>
@@ -836,7 +833,7 @@
                     <div class="card-quote">"以前在镇上，一天卖几十碗就不错了。现在比赛一来，排队能排到街对面。"</div>
                     <div class="char-detail">王光菊，人称"庆嫂"，从石门镇搬到县城商圈经营麻辣烫摊位。赛事期间，一碗麻辣烫15元，小摊一天能卖出3000碗。月收入3万+，从镇上小摊到县城商圈，庆嫂的故事是岚皋普通人因赛事改变生活的缩影。</div>
                 </div>
-                <div class="character-card" onclick="toggleCharDetail(this)">
+                <div class="character-card">
                     <div class="card-header">
                         <span class="card-icon">🌾</span>
                         <div><div class="card-name">烛山魔芋</div><div class="card-type">农产品</div></div>
@@ -845,7 +842,7 @@
                     <div class="card-quote">"以前我们魔芋主要走线下批发，现在通过村BA，全国都知道岚皋魔芋了。"</div>
                     <div class="char-detail">刘世兵，烛山魔芋负责人。岚皋魔芋种植面积达16.2万亩，素有"中国魔芋之乡"美誉。村BA期间，魔芋产品销量增长5倍，日均成单突破3000单。烛山魔芋从深山特产变成全国知名品牌。</div>
                 </div>
-                <div class="character-card" onclick="toggleCharDetail(this)">
+                <div class="character-card">
                     <div class="card-header">
                         <span class="card-icon">🎨</span>
                         <div><div class="card-name">手工藤编</div><div class="card-type">非遗传承</div></div>
@@ -854,7 +851,7 @@
                     <div class="card-quote">"游客一边拍视频一边下单，藤编从柜台上的摆件变成了'爆款'。订单排到三个月后。"</div>
                     <div class="char-detail">任师傅，手工藤编手艺人。藤编是岚皋省级非遗项目，编制的篮子、收纳盒等工艺品成为赛事热门伴手礼。30元起/件，游客一边拍视频一边下单，订单排到三个月后。非遗手艺借赛事流量找到了新的生命力。</div>
                 </div>
-                <div class="character-card" onclick="toggleCharDetail(this)">
+                <div class="character-card">
                     <div class="card-header">
                         <span class="card-icon">🥟</span>
                         <div><div class="card-name">巴山徐姨手工坊</div><div class="card-type">地方小吃</div></div>

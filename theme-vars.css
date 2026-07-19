@@ -1,0 +1,20 @@
+:root {
+  --color-primary: #F47A1F;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #071B2C;
+  --color-secondary-foreground: #ffffff;
+  --color-accent: #F47A1F;
+  --color-accent-foreground: #ffffff;
+  --color-muted: #9CA3AF;
+  --color-muted-foreground: #1a1a2e;
+  --color-background: #0A0A0F;
+  --color-foreground: #F5F5F7;
+  --color-card: #12121A;
+  --color-card-foreground: #F5F5F7;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-ring: #F47A1F;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+}
